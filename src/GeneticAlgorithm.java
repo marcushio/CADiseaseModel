@@ -9,7 +9,7 @@ public class GeneticAlgorithm{
     private double probNovelStoI_1, probNovelStoI_2, probNovelStoI_3, probNovelStoI_4, probNovelStoI_5,
             probNovelStoI_6, probNovelStoI_7, probNovelStoI_8 ;
     public GeneticAlgorithm() {
-        probNovelStoI_1 = Math.random(); //probability of S->R for novel virus
+        probNovelStoI_1 = Math.random(); //probability of S->Igit  for novel virus
         probNovelStoI_2 = Math.random();
         probNovelStoI_3 = Math.random();
         probNovelStoI_4 = Math.random();
