@@ -8,7 +8,11 @@ public class Controller extends TimerTask {
     //width and height of population
     private int width = 40, height = 40;
 
-    private double probStoI_1 = .25, probStoI_2to3 = .33, probStoI_4to6 = .5, probStoI_7up = .75 ;
+    //private double probStoI_1 = .25, probStoI_2to3 = .33, probStoI_4to6 = .5, probStoI_7up = .75 ; //jeeeez these var names are baad
+    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
+                   probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
+    private double probNovelStoI_1, probNovelStoI_2, probNovelStoI_3, probNovelStoI_4, probNovelStoI_5,
+                   probNovelStoI_6, probNovelStoI_7 ;   //probStoI meaning probability of S->I and prob Novel like probability for the novel virus
 
     public Controller(Population pop, Display disp){
         this.population = pop;
@@ -40,23 +44,32 @@ public class Controller extends TimerTask {
         if(thisAgentState == State.RECOVERED){ return State.RECOVERED; }
 
         if(thisAgentState == State.SUSCEPTIBLE) { //cover susceptible cases first
+            //lol why didn't I just use a switch?
             if (sickNeighbors == 0) {
                 return State.SUSCEPTIBLE;
-            } else if (sickNeighbors < 2 && sickNeighbors > 0) {
+            } else if (sickNeighbors == 1) {
                 if(transition < probStoI_1){ return State.INFECTED; }
-            } else if (sickNeighbors < 4 && sickNeighbors <= 2 ) {
-                if (transition < probStoI_2to3) { return  State.INFECTED; } //adjust for my odds
-            } else if (sickNeighbors < 7 && sickNeighbors >= 4) {
-                if (transition < probStoI_4to6) { return State.INFECTED; }
-            } else if (sickNeighbors >= 7) {
-                if (transition < probStoI_7up) { return State.INFECTED; }
+            } else if (sickNeighbors == 2 ) {
+                if (transition < probStoI_2) { return  State.INFECTED; } //adjust for my odds
+            } else if (sickNeighbors == 3) {
+                if (transition < probStoI_3) { return State.INFECTED; }
+            } else if (sickNeighbors == 4) {
+                if (transition < probStoI_4) { return State.INFECTED; }
+            } else if (sickNeighbors == 5) {
+                if (transition < probStoI_5) { return State.INFECTED; }
+            } else if (sickNeighbors == 6) {
+                if (transition < probStoI_6) { return State.INFECTED; }
+            } else if (sickNeighbors == 7) {
+                if (transition < probStoI_7) { return State.INFECTED; }
+            } else if (sickNeighbors == 8) {
+                if (transition < probStoI_8) { return State.INFECTED; }
             }
         } else if (thisAgentState == State.INFECTED){ //then cover infected cases
             //in future keep agent histories and make this a function of time for now we'll use the # of sick neighbors as a proxy for time
             if(sickNeighbors >= 0 && sickNeighbors <= 4 ){
                 if(transition > .5) {return State.RECOVERED;}
                 return State.INFECTED;
-            } else if(sickNeighbors >=5  ){
+            } else if(sickNeighbors >=5  ){ //if there are 5 peeps around this sick person they've probably had it long enough to recover
                 return State.RECOVERED;
             }
         }
