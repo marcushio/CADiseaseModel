@@ -11,8 +11,9 @@ public class Controller extends TimerTask {
     //private double probStoI_1 = .25, probStoI_2to3 = .33, probStoI_4to6 = .5, probStoI_7up = .75 ; //jeeeez these var names are baad
     private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
                    probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
-    private double probNovelStoI_1, probNovelStoI_2, probNovelStoI_3, probNovelStoI_4, probNovelStoI_5,
-                   probNovelStoI_6, probNovelStoI_7 ;   //probStoI meaning probability of S->I and prob Novel like probability for the novel virus
+    private double probNovelStoI_1 = Math.random(), probNovelStoI_2 = Math.random(), probNovelStoI_3 = Math.random(),
+                   probNovelStoI_4 = Math.random(), probNovelStoI_5 = Math.random(), probNovelStoI_6 = Math.random(),
+                   probNovelStoI_7 = Math.random(), probNovelStoI_8 = Math.random();   //probStoI meaning probability of S->I and prob Novel like probability for the novel virus
 
     public Controller(Population pop, Display disp){
         this.population = pop;
@@ -20,7 +21,9 @@ public class Controller extends TimerTask {
     }
 
     public void run(){
-        population = getNextStochasticPopulation();
+        //population = getNextPopulation();
+        //population = getNextStochasticPopulation();
+        population = getNextTwoVirusPopulation();
         setMetrics();
         display.update(population);
     }
@@ -31,6 +34,12 @@ public class Controller extends TimerTask {
     }
 
     public void stepStochastic(){
+        population = getNextStochasticPopulation();
+        setMetrics();
+        display.update(population);
+    }
+
+    public void stepTwoVirus(){
         population = getNextStochasticPopulation();
         setMetrics();
         display.update(population);
@@ -77,6 +86,47 @@ public class Controller extends TimerTask {
         return State.SUSCEPTIBLE; //default return all logic above applies to non sus returns
     }
 
+    public State applyRuleTwoVirus(ArrayList<State> neighborhood, State thisAgentState){
+        //Math.random() produces a double 0<1
+        double transition = Math.random();
+        int sickNeighbors = getSickNeighbors(neighborhood);
+
+        if(thisAgentState == State.RECOVERED){ return State.RECOVERED; }
+
+        if(thisAgentState == State.SUSCEPTIBLE) { //cover susceptible cases first
+            //lol why didn't I just use a switch?
+            if (sickNeighbors == 0) {
+                return State.SUSCEPTIBLE;
+            } else if (sickNeighbors == 1) {
+                if(transition < probNovelStoI_1){ return State.INFECTED; }
+            } else if (sickNeighbors == 2 ) {
+                if (transition < probNovelStoI_2) { return  State.INFECTED; } //adjust for my odds
+            } else if (sickNeighbors == 3) {
+                if (transition < probNovelStoI_3) { return State.INFECTED; }
+            } else if (sickNeighbors == 4) {
+                if (transition < probNovelStoI_4) { return State.INFECTED; }
+            } else if (sickNeighbors == 5) {
+                if (transition < probNovelStoI_5) { return State.INFECTED; }
+            } else if (sickNeighbors == 6) {
+                if (transition < probNovelStoI_6) { return State.INFECTED; }
+            } else if (sickNeighbors == 7) {
+                if (transition < probNovelStoI_7) { return State.INFECTED; }
+            } else if (sickNeighbors == 8) {
+                if (transition < probNovelStoI_8) { return State.INFECTED; }
+            }
+        } else if (thisAgentState == State.INFECTED){ //then cover infected cases
+            //in future keep agent histories and make this a function of time for now we'll use the # of sick neighbors as a proxy for time
+            if(sickNeighbors >= 0 && sickNeighbors <= 4 ){
+                if(transition > .5) {return State.RECOVERED;}
+                return State.INFECTED;
+            } else if(sickNeighbors >=5  ){ //if there are 5 peeps around this sick person they've probably had it long enough to recover
+                return State.RECOVERED;
+            }
+        }
+
+        return State.SUSCEPTIBLE; //default return all logic above applies to non sus returns
+    }
+
     public State applyRule(ArrayList<State> neighborhood, State thisAgentState){
         boolean allNeighborsSick = true;
         boolean hasSickNeighbor = false;
@@ -92,6 +142,17 @@ public class Controller extends TimerTask {
             else{return State.SUSCEPTIBLE;}
         }
         return State.RECOVERED;
+    }
+
+    private Population getNextTwoVirusPopulation(){
+            Population nextPopulation = population;
+            for(int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    State nextState = applyRuleTwoVirus(getNeighborhood(x,y), population.getPopulation()[x][y].getState() );
+                    nextPopulation.getPopulation()[x][y].setState( nextState );
+                }
+            }
+            return  nextPopulation;
     }
 
     private Population getNextStochasticPopulation(){
@@ -205,14 +266,16 @@ public class Controller extends TimerTask {
     }
 
     public void setMetrics(){ //man I took a lot of inefficient design choices, but hey they work.
-        int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0;
+        int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, novelInfectd = 0;
         for(int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if(population.getAgent(x, y).getState() == State.INFECTED){ currInfected++; }
                 if(population.getAgent(x, y).getState() == State.SUSCEPTIBLE){ susceptible++; }
                 if(population.getAgent(x,y).getState() == State.RECOVERED){ recovered ++; }
+                if(population.getAgent(x,y).getNovelState() == State.NOVEL_I){  novelInfectd++; }
             }
         }
+        population.setNovelInfected(novelInfectd);
         population.setInfected(currInfected);
         population.setRecovered(recovered);
         population.incrementTotalCases(currInfected);

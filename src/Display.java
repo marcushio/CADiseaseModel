@@ -33,6 +33,7 @@ public class Display {
         this.primaryStage = primaryStage;
         root = new VBox();
         metrics = new HBox();
+
         Text casesText = new Text("Cases so far:  1    " );
         Text infectedText = new Text("Current Infected: 1    " );
         Text recoveredText = new Text("Total recovered: 0    " );
@@ -54,15 +55,38 @@ public class Display {
      */
     public void update(Population populationData){
         Agent[][] population = populationData.getPopulation();
+
         int totalCases = populationData.getTotalCases() ;
         int currInfected = populationData.getCurrInfected();
         int currRecovered = populationData.getRecovered();
+        int virus2Cases = populationData.getVirus2Cases();
         System.out.println("Time Step: " + ++t);
         System.out.println("Total Cases so far: " + totalCases + "\n" + "Currently Infected: " + currInfected + "\n" + "Recovered: " + currRecovered);
+        System.out.println("Cases of Virus2: " + virus2Cases);
         //first update the board I think since states flow in one direction we're fine just drawing over them
+
+        gc.setFill(Color.ORANGE);
+        gc.fillRect(0 * cellWidth, 0* cellHeight, cellWidth/2, cellHeight );
+        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
+        gc.setFill(Color.RED);
+        gc.fillRect(0 * cellWidth + cellWidth/2, 0* cellHeight, cellWidth/2, cellHeight );
+        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
         for(int x = 0; x < popWidth; x++){
             for(int y = 0; y < popHeight; y++){
-                if (population[x][y].getState() == State.SUSCEPTIBLE){
+                State virus1State = population[x][y].getState();
+                State virus2State = population[x][y].getNovelState();
+                //make sure we covered all possibilities
+                if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){
+                    gc.setFill(Color.ORANGE);
+                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.setFill(Color.RED);
+                    gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                } else if (virus2State == State.NOVEL_I && virus1State != State.INFECTED ){
+                    gc.setFill(Color.ORANGE);
+                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
+                } else if (population[x][y].getState() == State.SUSCEPTIBLE){
                     gc.setFill(Color.GREEN);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
@@ -70,6 +94,11 @@ public class Display {
                     gc.setFill(Color.RED);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
+                } else if (virus1State == State.RECOVERED && virus2State == State.NOVEL_R){ //check for dual states before single states
+                    gc.setFill(Color.BLUE);
+                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth/2, cellHeight);
+                    gc.setFill(Color.BLACK);
+                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                 } else if (population[x][y].getState() == State.RECOVERED){
                     gc.setFill(Color.BLUE);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
@@ -77,6 +106,12 @@ public class Display {
                 }
             }
         }
+//        gc.setFill(Color.ORANGE); this works for the I'I case in cell 0,0
+//        gc.fillRect(0 * cellWidth, 0* cellHeight, cellWidth/2, cellHeight );
+//        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
+//        gc.setFill(Color.RED);
+//        gc.fillRect(0 * cellWidth + cellWidth/2, 0* cellHeight, cellWidth/2, cellHeight );
+//        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
         //then update the metrics display
         metrics = new HBox();
         Text casesText = new Text("Cases so far:  " + populationData.getTotalCases());

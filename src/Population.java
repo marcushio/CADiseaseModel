@@ -8,8 +8,9 @@
 public class Population {
     private int width = 40, height = 40;
     private int startX = 10, startY = 10;
+    private int startX2 = 20, startY2 = 20;
     private Agent[][] population;
-    private int totalCases, currInfected, recovered;
+    private int totalCases, currInfected, recovered, virus2Cases;
 
     public Population(){
         population = new Agent[width][height];
@@ -28,6 +29,7 @@ public class Population {
         }
         //our case0
         population[startX][startY].setState(State.INFECTED);
+        population[startX2][startY2].setNovelState(State.NOVEL_I);
     }
 
     public Agent[][] getPopulation(){
@@ -42,10 +44,16 @@ public class Population {
     public int getRecovered(){
         return recovered;
     }
+    public int getVirus2Cases(){
+        return virus2Cases;
+    }
     public Agent getAgent(int x, int y){
         return population[x][y];
     }
 
+    public void setNovelInfected(int virus2Cases){
+        this.virus2Cases = virus2Cases;
+    }
     public void setInfected(int infected) {
         this.currInfected = infected;
     }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 
 public class Agent {
+    //why didn't I just add a dual infected state under a single state var. Why did I add this novelState var?
+    private State novelState;
     private State state;
     private State prevState;
     private int xPosition;
@@ -31,16 +33,30 @@ public class Agent {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
-
+    public Agent(State prevState, State state, State novelState, boolean isEdge, boolean isCorner, int xPosition, int yPosition){
+        this.novelState = novelState;
+        this.prevState = prevState;
+        this.state = state;
+        this.isEdge = isEdge;
+        this.isCorner = isCorner;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+    }
 
     public void setState(State newState){
         prevState = state;
         state = newState;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        //this.xPosition = xPosition; why tf did I actually put those there? I don't remember a reason
+        //this.yPosition = yPosition;
+    }
+    public void setNovelState(State newNovelState){
+        novelState = newNovelState;
     }
     public State getState(){
         return state;
+    }
+    public State getNovelState(){
+        return novelState;
     }
     public void setxPosition(int xPosition){
         this.xPosition = xPosition;
