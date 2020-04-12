@@ -76,16 +76,17 @@ public class Display {
                 State virus1State = population[x][y].getState();
                 State virus2State = population[x][y].getNovelState();
                 //make sure we covered all possibilities
-                if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){
+                if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){//check for dual states before single states
                     gc.setFill(Color.ORANGE);
                     gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
                     gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
                     gc.setFill(Color.RED);
                     gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
                 } else if (virus2State == State.NOVEL_I && virus1State != State.INFECTED ){
                     gc.setFill(Color.ORANGE);
                     gc.fillRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
+                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
                 } else if (population[x][y].getState() == State.SUSCEPTIBLE){
                     gc.setFill(Color.GREEN);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
@@ -95,12 +96,18 @@ public class Display {
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                 } else if (virus1State == State.RECOVERED && virus2State == State.NOVEL_R){ //check for dual states before single states
-                    gc.setFill(Color.BLUE);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth/2, cellHeight);
                     gc.setFill(Color.BLACK);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
+                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                    //gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.setFill(Color.BLUE);
+                    gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
+                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
                 } else if (population[x][y].getState() == State.RECOVERED){
                     gc.setFill(Color.BLUE);
+                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
+                    gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
+                } else if (virus2State == State.NOVEL_I){
+                    gc.setFill(Color.BLACK);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                 }

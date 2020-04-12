@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.TimerTask;
-import java.util.Random;
 
 public class Controller extends TimerTask {
     Population population;
@@ -86,41 +85,41 @@ public class Controller extends TimerTask {
         return State.SUSCEPTIBLE; //default return all logic above applies to non sus returns
     }
 
-    public State applyRuleTwoVirus(ArrayList<State> neighborhood, State thisAgentState){
+    public State applyRuleVirus2(ArrayList<State> neighborhood, State thisAgentState){
         //Math.random() produces a double 0<1
         double transition = Math.random();
         int sickNeighbors = getSickNeighbors(neighborhood);
 
-        if(thisAgentState == State.RECOVERED){ return State.RECOVERED; }
+        if(thisAgentState == State.NOVEL_R){ return  State.NOVEL_R; }
 
         if(thisAgentState == State.SUSCEPTIBLE) { //cover susceptible cases first
-            //lol why didn't I just use a switch?
+            //lol why didn't I just use a switch? Actually I really don't like switches that much
             if (sickNeighbors == 0) {
                 return State.SUSCEPTIBLE;
             } else if (sickNeighbors == 1) {
-                if(transition < probNovelStoI_1){ return State.INFECTED; }
+                if(transition < probNovelStoI_1){ return State.NOVEL_I; }
             } else if (sickNeighbors == 2 ) {
-                if (transition < probNovelStoI_2) { return  State.INFECTED; } //adjust for my odds
+                if (transition < probNovelStoI_2) { return  State.NOVEL_I; } //adjust for my odds
             } else if (sickNeighbors == 3) {
-                if (transition < probNovelStoI_3) { return State.INFECTED; }
+                if (transition < probNovelStoI_3) { return State.NOVEL_I; }
             } else if (sickNeighbors == 4) {
-                if (transition < probNovelStoI_4) { return State.INFECTED; }
+                if (transition < probNovelStoI_4) { return State.NOVEL_I; }
             } else if (sickNeighbors == 5) {
-                if (transition < probNovelStoI_5) { return State.INFECTED; }
+                if (transition < probNovelStoI_5) { return State.NOVEL_I; }
             } else if (sickNeighbors == 6) {
-                if (transition < probNovelStoI_6) { return State.INFECTED; }
+                if (transition < probNovelStoI_6) { return State.NOVEL_I; }
             } else if (sickNeighbors == 7) {
-                if (transition < probNovelStoI_7) { return State.INFECTED; }
+                if (transition < probNovelStoI_7) { return State.NOVEL_I; }
             } else if (sickNeighbors == 8) {
-                if (transition < probNovelStoI_8) { return State.INFECTED; }
+                if (transition < probNovelStoI_8) { return State.NOVEL_I; }
             }
-        } else if (thisAgentState == State.INFECTED){ //then cover infected cases
+        } else if (thisAgentState == State.NOVEL_I){ //then cover infected cases
             //in future keep agent histories and make this a function of time for now we'll use the # of sick neighbors as a proxy for time
             if(sickNeighbors >= 0 && sickNeighbors <= 4 ){
-                if(transition > .5) {return State.RECOVERED;}
-                return State.INFECTED;
+                if(transition > .5) {return State.NOVEL_R;}
+                return State.NOVEL_I;
             } else if(sickNeighbors >=5  ){ //if there are 5 peeps around this sick person they've probably had it long enough to recover
-                return State.RECOVERED;
+                return State.NOVEL_R;
             }
         }
 
@@ -148,7 +147,9 @@ public class Controller extends TimerTask {
             Population nextPopulation = population;
             for(int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    State nextState = applyRuleTwoVirus(getNeighborhood(x,y), population.getPopulation()[x][y].getState() );
+                    State nextState = applyRuleRandom(getNeighborhood(x,y), population.getPopulation()[x][y].getState() );
+                    State nextNovelState =  applyRuleVirus2(getNeighborhood(x,y), population.getPopulation()[x][y].getNovelState() );
+                    nextPopulation.getPopulation()[x][y].setNovelState( nextNovelState );
                     nextPopulation.getPopulation()[x][y].setState( nextState );
                 }
             }
