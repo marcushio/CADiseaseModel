@@ -55,7 +55,6 @@ public class Display {
      */
     public void update(Population populationData){
         Agent[][] population = populationData.getPopulation();
-
         int totalCases = populationData.getTotalCases() ;
         int currInfected = populationData.getCurrInfected();
         int currRecovered = populationData.getRecovered();
@@ -63,19 +62,15 @@ public class Display {
         System.out.println("Time Step: " + ++t);
         System.out.println("Total Cases so far: " + totalCases + "\n" + "Currently Infected: " + currInfected + "\n" + "Recovered: " + currRecovered);
         System.out.println("Cases of Virus2: " + virus2Cases);
-        //first update the board I think since states flow in one direction we're fine just drawing over them
-
-        gc.setFill(Color.ORANGE);
-        gc.fillRect(0 * cellWidth, 0* cellHeight, cellWidth/2, cellHeight );
-        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
-        gc.setFill(Color.RED);
-        gc.fillRect(0 * cellWidth + cellWidth/2, 0* cellHeight, cellWidth/2, cellHeight );
-        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
+        //first update the board
         for(int x = 0; x < popWidth; x++){
             for(int y = 0; y < popHeight; y++){
                 State virus1State = population[x][y].getState();
                 State virus2State = population[x][y].getNovelState();
                 //make sure we covered all possibilities
+                if(x == 20 && y == 20){
+                    System.out.println("debug");
+                }
                 if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){//check for dual states before single states
                     gc.setFill(Color.ORANGE);
                     gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
@@ -83,11 +78,11 @@ public class Display {
                     gc.setFill(Color.RED);
                     gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
                     gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                } else if (virus2State == State.NOVEL_I && virus1State != State.INFECTED ){
+                } else if (virus2State == State.NOVEL_I ){
                     gc.setFill(Color.ORANGE);
                     gc.fillRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
                     gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                } else if (population[x][y].getState() == State.SUSCEPTIBLE){
+                } else if (population[x][y].getState() == State.SUSCEPTIBLE && virus2State == State.NOVEL_S){
                     gc.setFill(Color.GREEN);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
@@ -106,7 +101,7 @@ public class Display {
                     gc.setFill(Color.BLUE);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                } else if (virus2State == State.NOVEL_I){
+                } else if (virus2State == State.NOVEL_R){
                     gc.setFill(Color.BLACK);
                     gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
                     gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
