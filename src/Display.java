@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  */
 
 public class Display {
-    int t = 0;
     Stage primaryStage;
     private VBox root;
     private HBox metrics;
@@ -33,12 +32,6 @@ public class Display {
         this.primaryStage = primaryStage;
         root = new VBox();
         metrics = new HBox();
-
-        Text casesText = new Text("Cases so far:  1    " );
-        Text infectedText = new Text("Current Infected: 1    " );
-        Text recoveredText = new Text("Total recovered: 0    " );
-        metrics.getChildren().addAll(casesText, infectedText, recoveredText);
-
         populationGraphic = new Canvas(800, 800);
         gc = populationGraphic.getGraphicsContext2D();
 
@@ -59,9 +52,6 @@ public class Display {
         int currInfected = populationData.getCurrInfected();
         int currRecovered = populationData.getRecovered();
         int virus2Cases = populationData.getVirus2Cases();
-        System.out.println("Time Step: " + ++t);
-        System.out.println("Total Cases so far: " + totalCases + "\n" + "Currently Infected: " + currInfected + "\n" + "Recovered: " + currRecovered);
-        System.out.println("Cases of Virus2: " + virus2Cases);
         //first update the board
         for(int x = 0; x < popWidth; x++){
             for(int y = 0; y < popHeight; y++){
@@ -108,19 +98,7 @@ public class Display {
                 }
             }
         }
-//        gc.setFill(Color.ORANGE); this works for the I'I case in cell 0,0
-//        gc.fillRect(0 * cellWidth, 0* cellHeight, cellWidth/2, cellHeight );
-//        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
-//        gc.setFill(Color.RED);
-//        gc.fillRect(0 * cellWidth + cellWidth/2, 0* cellHeight, cellWidth/2, cellHeight );
-//        gc.strokeRect(0 * cellWidth,0 * cellHeight, cellWidth, cellHeight);
         //then update the metrics display
-        metrics = new HBox();
-        Text casesText = new Text("Cases so far:  " + populationData.getTotalCases());
-        Text infectedText = new Text("Current Infected: " + populationData.getCurrInfected());
-        Text recoveredText = new Text("Total recovered: " + populationData.getRecovered());
-        metrics.getChildren().addAll(casesText, infectedText, recoveredText);
-        //primaryStage.show();
     }
 
 

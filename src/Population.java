@@ -8,18 +8,17 @@ import java.util.ArrayList;
  */
 
 public class Population {
+    int time = 0;
+    int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
     private int width = 40, height = 40;
     private int startX = 10, startY = 10;
     private int startX2 = 20, startY2 = 20;
     private Agent[][] population;
-    private int totalCases, currInfected, recovered, virus2Cases;
+    private int totalCases = 0; //, currInfected, recovered, virus2Cases;
 
     public Population(){
         population = new Agent[width][height];
-        totalCases = 1;
-        currInfected = 1;
-        virus2Cases = 1;
-        recovered = 0;
+
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 boolean isCorner = false;
@@ -49,14 +48,20 @@ public class Population {
         return recovered;
     }
     public int getVirus2Cases(){
-        return virus2Cases;
+        return novelInfectd ;
     }
     public Agent getAgent(int x, int y){
         return population[x][y];
     }
+    public void setAgentNovelState(State novelState, int x, int y){
+        population[x][y].setNovelState(novelState);
+    }
+    public void setAgentState(State state, int x, int y){
+        population[x][y].setState(state);
+    }
 
     public void setNovelInfected(int virus2Cases){
-        this.virus2Cases = virus2Cases;
+        this.novelInfectd = virus2Cases;
     }
     public void setInfected(int infected) {
         this.currInfected = infected;
@@ -81,6 +86,7 @@ public class Population {
     }
 
     /**
+     * for getting the members of a neighborhood that are sick with the SECONDVIRUS
      * @param neighborhood the states of the neighbors of a cell
      * @return the number of infected in a neighborhood
      */
@@ -152,18 +158,53 @@ public class Population {
                 neighborhood.add(population[x-1 ][y]);
             }
         } else { //agent is in a moore neighborhood
-            neighborhood.add(population[x ][y-1]);
-            neighborhood.add(population[x-1 ][y-1]);
-            neighborhood.add(population[x+1 ][y-1]);
+            neighborhood.add(population[x-1][y]);
+            neighborhood.add(population[x-1][y-1]);
+            neighborhood.add(population[x-1][y+1]);
             neighborhood.add(population[x+1 ][y]);
-            neighborhood.add(population[x-1 ][y]);
-            neighborhood.add(population[x ][y+1]);
-            neighborhood.add(population[x-1 ][y+1]);
+            neighborhood.add(population[x+1 ][y-1]);
             neighborhood.add(population[x+1 ][y+1]);
-
+            neighborhood.add(population[x][y-1]);
+            neighborhood.add(population[x][y+1]);
         }
-        //State thisAgentState = population[x][ y
-        //return applyRule(neighborhoodStates][ thisAgentState);
         return neighborhood;
+    }
+
+    public void printStatus(){
+        time++;
+        int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0;
+        for(int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                Agent thisAgent = population[x][y];
+                if(thisAgent.getState() == State.INFECTED){ currInfected++; this.currInfected++; }
+                if(thisAgent.getState() == State.SUSCEPTIBLE){ susceptible++; this.susceptible++; }
+                if(thisAgent.getState() == State.RECOVERED){ recovered ++; this.recovered++;}
+                if(thisAgent.getNovelState() == State.NOVEL_I){  novelInfectd++; this.novelInfectd++; }
+                if(thisAgent.getNovelState() == State.NOVEL_R){ novelRecovered++; this.novelRecovered++; }
+                if(thisAgent.getNovelState() == State.NOVEL_S){ novelSusceptible++; this.novelSusceptible++;}
+            }
+        }
+        System.out.println("______Population printed from within population STATS at Time t = " + time);
+        System.out.println("Current I: " + currInfected);
+        System.out.println("Current I': " + novelInfectd);
+        System.out.println("Current S: " + susceptible);
+        System.out.println("Current S': " + novelSusceptible);
+        System.out.println("Current R: " + recovered);
+        System.out.println("Current R': " + novelRecovered);
+    }
+
+    public boolean sickies(){
+        boolean truth = false;
+        for(int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                if( (x != 10 && y != 10) && (x != 20 && y!= 20) ) {
+                    if (population[x][y].getNovelState() == State.NOVEL_I) {
+                        truth = true;
+                        System.out.println("found sicky at " + x + " " + y);
+                    }
+                }
+            }
+        }
+        return truth;
     }
 }

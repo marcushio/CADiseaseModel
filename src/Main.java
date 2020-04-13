@@ -7,9 +7,6 @@ import java.util.Timer;
 public class Main extends Application  {
     private boolean simpleRules = true;
     private Stage primaryStage;
-    private Display display;
-
-    private Population population;
     private Controller controller;
     private GeneticAlgorithm ga;
     //I'll have to make vars to keep track of the metrics
@@ -22,22 +19,14 @@ public class Main extends Application  {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         ga = new GeneticAlgorithm();
-        population = new Population();
-        display = new Display(primaryStage, population);
-        display.update(population);
+        controller = new Controller(primaryStage);
         Timer timer = new Timer();
+        timer.schedule(controller, 1000, 1500 );
 //        Controller controller = new Controller( population, display);
-//        for(int i = 0; i < 500; i++) {
-//            controller.stepStochastic();
+//        for(int i = 0; i < 2; i++) {
+//            controller.stepTwoVirus();
 //        }
-        //controller.step();
-        //controller.step();
-        //controller.step();
-        timer.schedule(controller = new Controller(population, display), 1000, 1500 );
+
     }
-
-
-
-
 
 }
