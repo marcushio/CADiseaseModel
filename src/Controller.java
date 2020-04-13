@@ -12,8 +12,10 @@ public class Controller extends TimerTask {
     private int width = 40, height = 40;
 
     //private double probStoI_1 = .25, probStoI_2to3 = .33, probStoI_4to6 = .5, probStoI_7up = .75 ; //jeeeez these var names are baad
-    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
-                   probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
+//    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
+//            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
+    private double probStoI_1 = .87, probStoI_2 = .36, probStoI_3 = .7, probStoI_4 = .8, probStoI_5 = .55,
+            probStoI_6 = .5, probStoI_7 = .20, probStoI_8 = .20;
     private double probNovelStoI_1 = Math.random(), probNovelStoI_2 = Math.random(), probNovelStoI_3 = Math.random(),
                    probNovelStoI_4 = Math.random(), probNovelStoI_5 = Math.random(), probNovelStoI_6 = Math.random(),
                    probNovelStoI_7 = Math.random(), probNovelStoI_8 = Math.random();   //probStoI meaning probability of S->I and prob Novel like probability for the novel virus
@@ -26,6 +28,10 @@ public class Controller extends TimerTask {
         printStatus();
     }
 
+    public Controller(){//this one is for when we don't need a display
+        this.population = new Population();
+    }
+
     public void run(){
         population = getNextTwoVirusPopulation(population);
         //setMetrics();
@@ -34,11 +40,11 @@ public class Controller extends TimerTask {
         time++;
     }
 
-//    public void stepTwoVirus(){
-//        population = getNextTwoVirusPopulation(population);
-//        setMetrics();
-//        display.update(population);
-//    }
+    public void step(){
+        population = getNextTwoVirusPopulation(population);
+        setMetrics();
+        display.update(population);
+    }
 
     public State applyRuleRandom(ArrayList<Agent> neighborhood, State thisAgentState){
         //Math.random() produces a double 0<1
@@ -154,7 +160,7 @@ public class Controller extends TimerTask {
                     ArrayList<Agent> hood = pop.getNeighborhood(x,y);
                     int sickies = pop.getSickNeighbors2(hood);
                     if(sickies > 1){
-                        System.out.println("why the hell are there sick neighbors?");
+                        System.out.println("why the hell are there sick neighbors?"); //debug because I was getting neighborhoods with sick people in new populations.
                         pop.getNeighborhood(x,y);
                     }
                     Agent thisAgent = pop.getAgent(x,y);
@@ -279,6 +285,17 @@ public class Controller extends TimerTask {
         return sickNeighbors;
     }
 
+    public void setTransmissionRates(ArrayList<Double> virus){
+         probNovelStoI_1 = virus.get(0);
+         probNovelStoI_2 = virus.get(1);
+         probNovelStoI_3 = virus.get(2);
+         probNovelStoI_4 = virus.get(3);
+         probNovelStoI_5 =virus.get(4);
+         probNovelStoI_6 = virus.get(5);
+         probNovelStoI_7 =virus.get(6);
+         probNovelStoI_8 = virus.get(7);
+    }
+
     /**
      * @param neighborhood the states of the neighbors of a cell
      * @return the number of infected in a neighborhood
@@ -289,6 +306,10 @@ public class Controller extends TimerTask {
             if(neighbor.getNovelState() == State.NOVEL_I){ sickNeighbors++; }
         }
         return sickNeighbors;
+    }
+
+    public int getInfected(){
+        return population.getCurrInfected();
     }
 
     public void setMetrics(){ //man I took a lot of inefficient design choices, but hey they work.
