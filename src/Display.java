@@ -1,11 +1,8 @@
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -16,26 +13,27 @@ import javafx.stage.Stage;
  */
 
 public class Display {
-    Stage primaryStage;
+    private Stage primaryStage;
     private VBox root;
     private HBox metrics;
     private Canvas populationGraphic;
     private GraphicsContext gc;
+    private Population population;
     //settings used for 20x20
     // private int cellHeight = 40, cellWidth = 40;
     // private int popHeight = 20, popWidth = 20;
     private int cellHeight = 20, cellWidth = 20;
     private int popHeight = 40, popWidth = 40;
 
-
     public Display(Stage primaryStage, Population population){
         this.primaryStage = primaryStage;
+        this.population = population;
         root = new VBox();
         metrics = new HBox();
         populationGraphic = new Canvas(800, 800);
         gc = populationGraphic.getGraphicsContext2D();
-
         //root.getChildren().add(metrics);
+        makeBindings();
         root.getChildren().add(populationGraphic);
         primaryStage.setTitle("Covid-19 modeling");
         primaryStage.setScene(new Scene(root, 810, 830));
@@ -44,14 +42,11 @@ public class Display {
 
     /**
      * Update the display showing the new states of cells and new metrics numbers
-     * @param populationData represented by 2d array of Agent
+     * @param population represented by 2d array of Agent
      */
-    public void update(Population populationData){
-        Agent[][] population = populationData.getPopulation();
-        int totalCases = populationData.getTotalCases() ;
-        int currInfected = populationData.getCurrInfected();
-        int currRecovered = populationData.getRecovered();
-        int virus2Cases = populationData.getVirus2Cases();
+    //Will this be obsolete with the use of bindings?? Pretty surrrre it will be
+    public void update(Population population){
+        Agent[][] population = population.getPopulation();
         //first update the board
         for(int x = 0; x < popWidth; x++){
             for(int y = 0; y < popHeight; y++){
@@ -99,6 +94,15 @@ public class Display {
             }
         }
         //then update the metrics display
+    }
+
+    private void makeBindings(){
+        for(int x = 0; x < popWidth; x++){
+            for(int y = 0; y < popHeight; y++ ){
+                Agent thisAgent = population.getAgent(x,y);
+
+            }
+        }
     }
 
 

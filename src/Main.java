@@ -18,15 +18,11 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        ga = new GeneticAlgorithm();
         controller = new Controller(primaryStage);
+
+        //this'll be wrapped up after I add a start button
         Timer timer = new Timer();
         timer.schedule(controller, 1000, 1500 );
-//        Controller controller = new Controller( population, display);
-//        for(int i = 0; i < 2; i++) {
-//            controller.stepTwoVirus();
-//        }
-
     }
 
 }

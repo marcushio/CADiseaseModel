@@ -1,3 +1,6 @@
+import javafx.beans.property.ObjectProperty;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 /**
  * @author Marcus Trujillo
@@ -9,6 +12,7 @@ import java.util.ArrayList;
 
 public class Agent {
     //why didn't I just add a dual infected state under a single state var. Why did I add this novelState var?
+    private ObjectProperty<Color> color ; 
     private State novelState;
     private State state;
     private State prevState;

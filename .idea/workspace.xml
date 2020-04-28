@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="357b7eaf-327f-4e5c-8d7d-6263ea9da974" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DeterministicPopulation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StochasticPopulation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TwoVirusPopulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project 2/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project 2/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Agent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Population.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Population.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +90,7 @@
       <updated>1585838412041</updated>
       <workItem from="1585838420181" duration="25047000" />
       <workItem from="1586112877832" duration="73692000" />
+      <workItem from="1587846815681" duration="15841000" />
     </task>
     <servers />
   </component>
@@ -95,18 +102,18 @@
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
     <state x="205" y="-905" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586752283845" />
-    <state x="556" y="-851" key="#com.intellij.ide.util.MemberChooser" timestamp="1586047016547">
+    <state x="556" y="-851" key="#com.intellij.ide.util.MemberChooser" timestamp="1587866320715">
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="556" y="-851" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586047016547" />
+    <state x="556" y="-851" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1587866320715" />
     <state x="480" y="-776" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586752281348">
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
     <state x="480" y="-776" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586752281348" />
-    <state x="247" y="-1080" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586366320439">
+    <state x="247" y="-1080" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587862204993">
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="247" y="-1080" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586366320439" />
+    <state x="247" y="-1080" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1587862204993" />
     <state x="531" y="-805" key="FileChooserDialogImpl" timestamp="1586046420235">
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
@@ -163,36 +170,10 @@
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
     <state x="312" y="-824" width="877" height="621" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586733326413" />
-    <state x="414" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1586741932026">
+    <state x="414" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1587862683659">
       <screen x="-209" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="414" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1586741932026" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/Display.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="73" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="414" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1600.860/-209.-1080.1920.1040@-209.-1080.1920.1040" timestamp="1587862683659" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1586728550233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
