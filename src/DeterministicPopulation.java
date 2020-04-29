@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author: Marcus Trujillo
@@ -12,8 +13,7 @@ public class DeterministicPopulation extends Population {
     private int width = 40, height = 40;
     private int startX = 10, startY = 10;
     private int startX2 = 20, startY2 = 20;
-    private Agent[][] population;
-    private int totalCases = 0; //, currInfected, recovered, virus2Cases;
+
 
     public DeterministicPopulation(){
         super(40,40);
@@ -24,18 +24,49 @@ public class DeterministicPopulation extends Population {
         setPatientZero();
     }
 
+    @Override
     public void update(){
-        Agent[][] nextPopulation = population;
+        Agent[][] nextPopulation = new Agent[width][height];
+        //annoying I have to manually copy agents because I don't want to get a reference to the population
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                nextPopulation[i][j] = new Agent(population[i][j].getState(), population[i][j].isEdge, population[i][j].isCorner, population[i][j].getxPosition(), population[i][j].getyPosition());
+            }
+        }
+        currInfected = 0; susceptible = 0; recovered = 0;
+        int totalPop = 0;
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 State nextState = applyRule(x,y);
+                if(nextState == State.INFECTED){ currInfected++; }
+                if(nextState == State.SUSCEPTIBLE){ susceptible++; }
+                if(nextState == State.RECOVERED){ recovered++; }
+                if(x >= 9 && y >= 9) {
+                    System.out.println("currPop before : x=" + x + " y " + y + " " + population[x][y].getState());
+                    System.out.println("nextPop before : x=" + x + " y " + y + " " + nextPopulation[x][y].getState());
+                }
                 nextPopulation[x][y].setState( nextState );
+                if(x >= 9 && y >= 9) {
+                    System.out.println("currPop after : x=" + x + " y " + y + " " + population[x][y].getState());
+                    System.out.println("nextPop after : x=" + x + " y " + y + " " + nextPopulation[x][y].getState());
+                }
             }
         }
-        this.population = nextPopulation;
+        totalPop = currInfected + susceptible + recovered;
+        System.out.println("Infected: " + currInfected);
+        System.out.println("Susceptible: " + susceptible);
+        System.out.println("Recovered: " + recovered);
+        System.out.println("Total Peeps " + totalPop);
+
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                population[x][y].setState(nextPopulation[x][y].getState());
+            }
+        }
     }
 
-    public int getSickNeighbors(int x, int y){
+    @Override
+    public int countSickNeighbors(int x, int y){
         int sickNeighbors = 0;
         ArrayList<Agent> neighborhood = super.getNeighborhood(x,y);
         for(Agent neighbor: neighborhood){
@@ -45,6 +76,9 @@ public class DeterministicPopulation extends Population {
     }
 
     private State applyRule(int x, int y){
+        if(x == 9 && y == 11){
+            System.out.println( "debug ");
+        }
         ArrayList<Agent> neighborhood = super.getNeighborhood(x,y);
         State thisAgentState = population[x][y].getState();
         boolean allNeighborsSick = true;

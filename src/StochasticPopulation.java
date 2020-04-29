@@ -2,20 +2,17 @@ import java.util.ArrayList;
 
 /**
  * @author Marcus Trujillo
- * @version
+ * @version 4/28/20
  *
  * Models the population. I guess to start we'll have a population of about 400 peeps?
  */
 
-public class StochasticPopulation {
-    //private double probStoI_1 = .25, probStoI_2to3 = .33, probStoI_4to6 = .5, probStoI_7up = .75 ; //jeeeez these var names are baad
+public class StochasticPopulation extends Population {
 //    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
-//            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
+//            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75; these are just different settings to play with
     private double probStoI_1 = .5 , probStoI_2 = .36, probStoI_3 = .7, probStoI_4 = .8, probStoI_5 = .55,
             probStoI_6 = .59, probStoI_7 = .7, probStoI_8 = .60;
-    private double probNovelStoI_1 = Math.random(), probNovelStoI_2 = Math.random(), probNovelStoI_3 = Math.random(),
-            probNovelStoI_4 = Math.random(), probNovelStoI_5 = Math.random(), probNovelStoI_6 = Math.random(),
-            probNovelStoI_7 = Math.random(), probNovelStoI_8 = Math.random();   //probStoI meaning probability of S->I and prob Novel like probability for the novel virus
+
     int time = 0;
     int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
     private int width = 40, height = 40;
@@ -25,6 +22,7 @@ public class StochasticPopulation {
     private int totalCases = 0; //, currInfected, recovered, virus2Cases;
 
     public StochasticPopulation(){
+        super(40,40);
         population = new Agent[width][height];
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
@@ -38,22 +36,22 @@ public class StochasticPopulation {
         }
         //our case0
         population[startX][startY].setState(State.INFECTED);
-        population[startX2][startY2].setNovelState(State.NOVEL_I);
+        population[startX2][startY2].setState(State.NOVEL_I);
     }
 
+    @Override
     public void update(){
         //this is the main update loop
     }
 
-    /**
+    @Override
+        /**
      * @param neighborhood the states of the neighbors of a cell
      * @return the number of infected in a neighborhood
      */
-    public int getSickNeighbors(ArrayList<Agent> neighborhood){
+    public int countSickNeighbors(int x, int y){
         int sickNeighbors = 0;
-        for(Agent neighbor: neighborhood){
-            if(neighbor.getState() == State.INFECTED){ sickNeighbors++; }
-        }
+
         return sickNeighbors;
     }
 
@@ -62,10 +60,10 @@ public class StochasticPopulation {
      * @param neighborhood the states of the neighbors of a cell
      * @return the number of infected in a neighborhood
      */
-    public int getSickNeighbors2(ArrayList<Agent> neighborhood){
+    public int countSickNeighbors2(ArrayList<Agent> neighborhood){
         int sickNeighbors = 0;
         for(Agent neighbor: neighborhood){
-            if(neighbor.getNovelState() == State.NOVEL_I){ sickNeighbors++; }
+            if(neighbor.getState() == State.NOVEL_I || neighbor.getState() == State.DUAL_I){ sickNeighbors++; }
         }
         return sickNeighbors;
     }
@@ -88,21 +86,12 @@ public class StochasticPopulation {
         }
         return State.RECOVERED;
     }
-    private StochasticPopulation getNextStochasticPopulation(){
-        StochasticPopulation nextStochasticPopulation = population;
-        for(int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                State nextState = applyRuleRandom(population.getNeighborhood(x,y), population.getPopulation()[x][y].getState() );
-                nextStochasticPopulation.getPopulation()[x][y].setState( nextState );
-            }
-        }
-        return nextStochasticPopulation;
-    }
+
 
     public State applyRuleRandom(ArrayList<Agent> neighborhood, State thisAgentState){
         //Math.random() produces a double 0<1
         double transition = Math.random();
-        int sickNeighbors = population.getSickNeighbors(neighborhood);
+        int sickNeighbors = 0; //countSickNeighbors(neighborhood);
 
         if(thisAgentState == State.RECOVERED){ return State.RECOVERED; }
 
@@ -143,7 +132,7 @@ public class StochasticPopulation {
     public State applyRuleVirus2(ArrayList<Agent> neighborhood, State thisAgentState){
         //Math.random() produces a double 0<1
         double transition = Math.random();
-        int sickNeighbors = population.getSickNeighbors2(neighborhood);
+        int sickNeighbors = countSickNeighbors2(neighborhood);
         if (sickNeighbors == 0 && thisAgentState == State.NOVEL_S) {  return State.NOVEL_S; }
         if(thisAgentState == State.NOVEL_R){ return  State.NOVEL_R; }
 
@@ -180,20 +169,6 @@ public class StochasticPopulation {
         return State.NOVEL_S; //default return all logic above applies to non sus returns
     }
 
-
-
-    /**
-     * @param neighborhood the states of the neighbors of a cell
-     * @return the number of infected in a neighborhood
-     */
-    public int getSickNeighbors2(ArrayList<Agent> neighborhood){
-        int sickNeighbors = 0;
-        for(Agent neighbor: neighborhood){
-            if(neighbor.getNovelState() == State.NOVEL_I){ sickNeighbors++; }
-        }
-        return sickNeighbors;
-    }
-
     private State getNextState(){
         //
         return State.SUSCEPTIBLE;
@@ -209,9 +184,9 @@ public class StochasticPopulation {
                 if(thisAgent.getState() == State.INFECTED){ currInfected++; this.currInfected++; }
                 if(thisAgent.getState() == State.SUSCEPTIBLE){ susceptible++; this.susceptible++; }
                 if(thisAgent.getState() == State.RECOVERED){ recovered ++; this.recovered++;}
-                if(thisAgent.getNovelState() == State.NOVEL_I){  novelInfectd++; this.novelInfectd++; }
-                if(thisAgent.getNovelState() == State.NOVEL_R){ novelRecovered++; this.novelRecovered++; }
-                if(thisAgent.getNovelState() == State.NOVEL_S){ novelSusceptible++; this.novelSusceptible++;}
+                if(thisAgent.getState() == State.NOVEL_I){  novelInfectd++; this.novelInfectd++; }
+                if(thisAgent.getState() == State.NOVEL_R){ novelRecovered++; this.novelRecovered++; }
+                if(thisAgent.getState() == State.NOVEL_S){ novelSusceptible++; this.novelSusceptible++;}
             }
         }
         System.out.println("______Population printed from within population STATS at Time t = " + time);
@@ -229,7 +204,7 @@ public class StochasticPopulation {
         for(int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 if( (x != 10 && y != 10) && (x != 20 && y!= 20) ) {
-                    if (population[x][y].getNovelState() == State.NOVEL_I) {
+                    if (population[x][y].getState() == State.NOVEL_I) {
                         truth = true;
                         System.out.println("found sicky at " + x + " " + y);
                     }
@@ -239,7 +214,7 @@ public class StochasticPopulation {
         return truth;
     }
 
-
+    public void setPatientZero(){population[20][20].setState(State.INFECTED);}
     public Agent[][] getPopulation(){
         return this.population;
     }
@@ -257,7 +232,7 @@ public class StochasticPopulation {
         return population[x][y];
     }
     public void setAgentNovelState(State novelState, int x, int y){
-        population[x][y].setNovelState(novelState);
+        population[x][y].setState(novelState);
     }
     public void setAgentState(State state, int x, int y){
         population[x][y].setState(state);

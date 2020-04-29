@@ -15,22 +15,19 @@ public class Controller extends TimerTask {
         //this.stochasticPopulation = new StochasticPopulation();
         this.population = new DeterministicPopulation();
         this.display = new Display(primaryStage, population);
-        display.update(population);
     }
 
     public Controller(){//this one is for when we don't need a display
-        this.stochasticPopulation = new StochasticPopulation();
+        this.population = new DeterministicPopulation();
     }
 
     public void run(){
-        stochasticPopulation.update();
-        display.update(stochasticPopulation);
+        population.update();
         time++;
     }
 
     public void step(){
-        stochasticPopulation.update();
-        display.update(stochasticPopulation);
+
     }
 
 }

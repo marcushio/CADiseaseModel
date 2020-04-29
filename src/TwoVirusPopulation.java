@@ -28,22 +28,33 @@ public class TwoVirusPopulation extends Population{
     @Override
     public void update() {
         Agent[][] nextPopulation = population;
-        for(int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                State nextState = applyRuleRandom(hood, thisAgent.getState() );
-                State nextNovelState = applyRuleVirus2(hood, thisAgent.getNovelState() );
-                nextStochasticPopulation.setAgentNovelState(nextNovelState, x, y);
-                nextStochasticPopulation.setAgentState(nextState, x, y);
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                State nextState = applyRule(x,y);
+                nextPopulation[x][y].setState( nextState );
             }
         }
-        return nextStochasticPopulation;
+        this.population = nextPopulation;
     }
 
     @Override
-    public int getSickNeighbors(int x, int y){
+    public int countSickNeighbors(int x, int y){
         //how to get sickies goes here
         return 0;
     }
+
+    public State applyRule(int x, int y){
+        return State.INFECTED;
+    }
+    //probs limit this to one application rule inthe future
+    public State applyRuleRandom(int x, int y){
+        return State.INFECTED;
+    }
+
+    public State applyRuleVirus2(int x, int y){
+        return State.NOVEL_I;
+    }
+
     private StochasticPopulation getNextTwoVirusPopulation(StochasticPopulation pop){
         StochasticPopulation nextStochasticPopulation = new StochasticPopulation();
         boolean hasSick = nextStochasticPopulation.sickies();
@@ -57,15 +68,15 @@ public class TwoVirusPopulation extends Population{
                     System.out.println("debug rule appl");
                 }
                 ArrayList<Agent> hood = pop.getNeighborhood(x,y);
-                int sickies = pop.getSickNeighbors2(hood);
+                int sickies = countSickNeighbors2(x,y);
                 if(sickies > 1){
                     System.out.println("why the hell are there sick neighbors?"); //debug because I was getting neighborhoods with sick people in new populations.
                     pop.getNeighborhood(x,y);
                 }
                 Agent thisAgent = pop.getAgent(x,y);
 
-                State nextState = applyRuleRandom(hood, thisAgent.getState() );
-                State nextNovelState = applyRuleVirus2(hood, thisAgent.getNovelState() );
+                State nextState = applyRuleRandom(x,y );
+                State nextNovelState = applyRuleVirus2(x,y );
 
                 nextStochasticPopulation.setAgentNovelState(nextNovelState, x, y);
                 nextStochasticPopulation.setAgentState(nextState, x, y);
@@ -74,6 +85,9 @@ public class TwoVirusPopulation extends Population{
         return nextStochasticPopulation;
     }
 
+    public int countSickNeighbors2(int x, int y){
+        return 0;
+    }
     public void setPatientZero(){
         population[20][20].setState(State.INFECTED);
     }

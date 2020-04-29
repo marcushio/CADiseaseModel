@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
 
 /**
  *  @author Marcus Trujillo
@@ -16,8 +17,7 @@ public class Display {
     private Stage primaryStage;
     private VBox root;
     private HBox metrics;
-    private Canvas populationGraphic;
-    private GraphicsContext gc;
+    private GridPane populationGraphic;
     private Population population;
     //settings used for 20x20
     // private int cellHeight = 40, cellWidth = 40;
@@ -30,20 +30,34 @@ public class Display {
         this.population = population;
         root = new VBox();
         metrics = new HBox();
-        populationGraphic = new Canvas(800, 800);
-        gc = populationGraphic.getGraphicsContext2D();
+        //populationGraphic = new Canvas(800, 800);
+        makeGrid();
         //root.getChildren().add(metrics);
-        makeBindings();
         root.getChildren().add(populationGraphic);
         primaryStage.setTitle("Covid-19 modeling");
         primaryStage.setScene(new Scene(root, 810, 830));
         primaryStage.show();
     }
 
+    private void makeGrid(){
+        this.populationGraphic = new GridPane();
+        for(int x = 0; x < popWidth; x++){
+            for(int y = 0; y < popHeight; y++ ){
+                Agent thisAgent = population.getAgent(x,y);
+                Rectangle newRectangle = new Rectangle(0, 0, cellWidth, cellHeight) ;
+                newRectangle.fillProperty().bind(thisAgent.getColor());
+                newRectangle.setStroke(Color.BLACK);
+                this.populationGraphic.add(newRectangle, y, x ); //oddly gridpanes add params are (object, colIndex, rowIndex)
+            }
+        }
+    }
+
+
+
     /**
      * Update the display showing the new states of cells and new metrics numbers
      * @param population represented by 2d array of Agent
-     */
+
     //Will this be obsolete with the use of bindings?? Pretty surrrre it will be
     public void update(Population population){
         Agent[][] population = population.getPopulation();
@@ -51,11 +65,8 @@ public class Display {
         for(int x = 0; x < popWidth; x++){
             for(int y = 0; y < popHeight; y++){
                 State virus1State = population[x][y].getState();
-                State virus2State = population[x][y].getNovelState();
-                //make sure we covered all possibilities
-                if(x == 20 && y == 20){
-                    System.out.println("debug");
-                }
+                //State virus2State = population[x][y].getNovelState();
+
                 if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){//check for dual states before single states
                     gc.setFill(Color.ORANGE);
                     gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
@@ -95,17 +106,5 @@ public class Display {
         }
         //then update the metrics display
     }
-
-    private void makeBindings(){
-        for(int x = 0; x < popWidth; x++){
-            for(int y = 0; y < popHeight; y++ ){
-                Agent thisAgent = population.getAgent(x,y);
-
-            }
-        }
-    }
-
-
-
-
+     */
 }

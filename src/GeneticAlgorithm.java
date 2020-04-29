@@ -116,11 +116,11 @@ public class GeneticAlgorithm{
 
         for(ArrayList<Double> competitor : competitors) {
             Controller simulator = new Controller();
-            simulator.setTransmissionRates(competitor);
+            //simulator.setTransmissionRates(competitor);
             for (int i = 0; i < 25; i++) {
-                simulator.step();
+                //simulator.step();
             }
-            float thisDifference = Math.abs( simulator.getInfected() - 1245); //1245 was the average over like 50 samples for our model
+            float thisDifference = Math.abs( 1245); //1245 was the average over like 50 samples for our model simulator.getInfected() - 1245
             if(thisDifference < minDifference){
                 minDifference = thisDifference;
                 topTwo.add(0, competitor);

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public abstract class Population {
     private int height, width;
-    private Agent[][] population;
+    public Agent[][] population;
 
     public Population(int height, int width){
         this.height = height;
@@ -40,7 +40,7 @@ public abstract class Population {
      *
      * @return how many sick neighbors a cell has
      */
-    public abstract int getSickNeighbors(int x, int y);
+    public abstract int countSickNeighbors(int x, int y);
 
     /**
      * get an agent at a particular coordinate
