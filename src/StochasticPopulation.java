@@ -108,5 +108,5 @@ public class StochasticPopulation extends Population {
     public void setPatientZero(){population[20][20].setState(State.INFECTED);}
     public Agent[][] getPopulation(){
         return this.population;
-    }gi
+    }
 }
