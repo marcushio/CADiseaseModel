@@ -21,7 +21,7 @@ public abstract class Population {
                 if ( (x == 0 ) || (x == width - 1 ) || ( y == height -1)|| ( y == 0) ){isEdge = true;}
                 if ( (x == 0 && y == 0) || (x == 0 && y == height-1) || (x == width-1  && y == height-1)|| (x == width-1  && y == 0) ){ isCorner = true; isEdge = false; }
                 //population[x][y] = new Agent(State.SUSCEPTIBLE][ State.SUSCEPTIBLE][ isEdge][ isCorner][ x][ y); this was before 2 virus
-                population[x][y] = new Agent(State.SUSCEPTIBLE, State.SUSCEPTIBLE, State.NOVEL_S, isEdge, isCorner, x, y);
+                population[x][y] = new Agent(State.SUSCEPTIBLE, isEdge, isCorner, x, y);
             }
         }
     }
@@ -37,10 +37,22 @@ public abstract class Population {
     abstract void setPatientZero();
 
     /**
+     * apply a rule in order to figure out what an agent's next state should be
+     */
+    abstract State applyRule(int x, int y);
+
+    /**
      *
      * @return how many sick neighbors a cell has
      */
-    public abstract int countSickNeighbors(int x, int y);
+    public int countSickNeighbors(int x, int y){
+        int sickNeighbors = 0;
+        ArrayList<Agent> neighborhood = getNeighborhood(x,y);
+        for(Agent neighbor: neighborhood){
+            if(neighbor.getState() == State.INFECTED){ sickNeighbors++; }
+        }
+        return sickNeighbors;
+    }
 
     /**
      * get an agent at a particular coordinate

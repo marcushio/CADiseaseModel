@@ -41,23 +41,12 @@ public class DeterministicPopulation extends Population {
                 if(nextState == State.INFECTED){ currInfected++; }
                 if(nextState == State.SUSCEPTIBLE){ susceptible++; }
                 if(nextState == State.RECOVERED){ recovered++; }
-                if(x >= 9 && y >= 9) {
-                    System.out.println("currPop before : x=" + x + " y " + y + " " + population[x][y].getState());
-                    System.out.println("nextPop before : x=" + x + " y " + y + " " + nextPopulation[x][y].getState());
-                }
                 nextPopulation[x][y].setState( nextState );
-                if(x >= 9 && y >= 9) {
-                    System.out.println("currPop after : x=" + x + " y " + y + " " + population[x][y].getState());
-                    System.out.println("nextPop after : x=" + x + " y " + y + " " + nextPopulation[x][y].getState());
-                }
             }
         }
         totalPop = currInfected + susceptible + recovered;
-        System.out.println("Infected: " + currInfected);
-        System.out.println("Susceptible: " + susceptible);
-        System.out.println("Recovered: " + recovered);
-        System.out.println("Total Peeps " + totalPop);
-
+        System.out.println("Infected: " + currInfected + "\n" + "Susceptible: " + susceptible + "\n" + "Recovered: " + recovered + "Total Peeps " + totalPop );
+        //finally we actually change the state of our real population
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 population[x][y].setState(nextPopulation[x][y].getState());
@@ -75,10 +64,8 @@ public class DeterministicPopulation extends Population {
         return sickNeighbors;
     }
 
-    private State applyRule(int x, int y){
-        if(x == 9 && y == 11){
-            System.out.println( "debug ");
-        }
+    @Override
+    public State applyRule(int x, int y){
         ArrayList<Agent> neighborhood = super.getNeighborhood(x,y);
         State thisAgentState = population[x][y].getState();
         boolean allNeighborsSick = true;

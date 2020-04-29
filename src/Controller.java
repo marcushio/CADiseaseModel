@@ -12,8 +12,8 @@ public class Controller extends TimerTask {
 
 
     public Controller(Stage primaryStage){
-        //this.stochasticPopulation = new StochasticPopulation();
-        this.population = new DeterministicPopulation();
+        this.population = new StochasticPopulation();
+        //this.population = new DeterministicPopulation();
         this.display = new Display(primaryStage, population);
     }
 

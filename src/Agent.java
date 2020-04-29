@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * An agent in the model. Has one of 3 states following the SIR model
  */
 
-
 public class Agent {
     //why didn't I just add a dual infected state under a single state var. Why did I add this novelState var?
     private ObjectProperty<Color> color = new ColorPicker(Color.GREEN).valueProperty() ;
@@ -32,15 +31,6 @@ public class Agent {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
-    public Agent(State prevState, State state, State novelState, boolean isEdge, boolean isCorner, int xPosition, int yPosition){
-        //this.novelState = novelState; switching to ONE STATE
-        this.prevState = prevState;
-        this.state = state;
-        this.isEdge = isEdge;
-        this.isCorner = isCorner;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-    }
 
     public void setState(State newState){
         prevState = state;
@@ -49,16 +39,8 @@ public class Agent {
             color.set(Color.RED);
         } else if ( newState.equals(State.SUSCEPTIBLE) ){
             color.set(Color.GREEN);
-        } else if ( newState.equals(State.NOVEL_S) ){
+        } else if ( newState.equals(State.RECOVERED) ){
             color.set(Color.BLUE);
-        } else if ( newState.equals(State.NOVEL_I) ){
-            color.set(Color.ORANGE);
-        } else if ( newState.equals(State.NOVEL_R) ){
-            color.set(Color.BLACK);
-        } else if ( newState.equals(State.DUAL_R) ){
-            color.set(Color.BLUEVIOLET);
-        } else if ( newState.equals(State.DUAL_I) ){
-            color.set(Color.ORANGERED);
         }
     }
 
