@@ -22,7 +22,7 @@ public class Main extends Application  {
         //controller.run();
         //this'll be wrapped up after I add a start button
         Timer timer = new Timer();
-        timer.schedule(controller, 1000, 1500 );
+        timer.schedule(controller, 1000, 150 );
     }
 
 }

@@ -49,7 +49,7 @@ public abstract class Population {
         int sickNeighbors = 0;
         ArrayList<Agent> neighborhood = getNeighborhood(x,y);
         for(Agent neighbor: neighborhood){
-            if(neighbor.getState() == State.INFECTED){ sickNeighbors++; }
+            if(neighbor.getState() == State.INFECTED || neighbor.getState() == State.ASYMPTOMATIC_CARRIER){ sickNeighbors++; }
         }
         return sickNeighbors;
     }

@@ -41,6 +41,12 @@ public class Agent {
             color.set(Color.GREEN);
         } else if ( newState.equals(State.RECOVERED) ){
             color.set(Color.BLUE);
+        } else if ( newState.equals(State.ASYMPTOMATIC_CARRIER) ){
+            color.set(Color.DARKRED);
+        } else if ( newState.equals(State.DEAD) ){
+            color.set(Color.BLACK);
+        } else if ( newState.equals(State.HOSPITALIZED) ){
+            color.set(Color.ORANGE);
         }
     }
 
