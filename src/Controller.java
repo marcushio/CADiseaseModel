@@ -9,7 +9,8 @@ public class Controller extends TimerTask {
     private int time = 1;
     //width and height of population
     private int width = 40, height = 40;
-
+    private boolean running = true;
+    private boolean header = true;
 
     public Controller(Stage primaryStage){
         this.population = new StochasticPopulation();
@@ -22,8 +23,14 @@ public class Controller extends TimerTask {
     }
 
     public void run(){
-        population.update();
-        time++;
+        if(header) {
+            System.out.println("Susceptible,Carier,Infected,Hospitalized,Recovered,Dead,Total Peeps");
+            header = false;
+        }
+        if(running) {
+            running = population.update();
+            time++;
+        }
     }
 
     public void step(){

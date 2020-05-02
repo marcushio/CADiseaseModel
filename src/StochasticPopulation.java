@@ -12,7 +12,7 @@ public class StochasticPopulation extends Population {
 //            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
     private double[] probStoI = {0.0, 0.5 , 0.36, 0.7, 0.8, 0.55, 0.59, 0.7, 0.60};
 
-    int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, CARRIER = 0, HOSPITALIZED = 0, DEAD = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
+//    int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, CARRIER = 0, HOSPITALIZED = 0, DEAD = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
     private double carrierConversionChance = 0.05;
     private double carrierRecoveryChance = 0.05;
     private double carrierDeathRate = 0.05;
@@ -24,12 +24,15 @@ public class StochasticPopulation extends Population {
     private double hospitalizedDeathRate = 0.05;
     private double hospitalizedRecoveryRate = 0.05;
 
-    private int width = 40, height = 40;
-    private int startX = 10, startY = 10;
-//    private int startX2 = 20, startY2 = 20;
+    private int startX, startY;
 
     public StochasticPopulation() {
-        super(40, 40);
+        this(40, 40);
+    }
+    public StochasticPopulation(int height, int width) {
+        super(height, width);
+        startX = width/2;
+        startY = height/2;
         setPatientZero();
     }
 
@@ -37,18 +40,18 @@ public class StochasticPopulation extends Population {
      * updates the population to the next time step
      */
     @Override
-    public void update(){
-        Agent[][] nextPopulation = new Agent[width][height];
+    public boolean update(){
+        Agent[][] nextPopulation = new Agent[super.getWidth()][super.getHeight()];
         //annoying I have to manually copy agents because I don't want to get a reference to the population
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
+        for(int i = 0; i < super.getWidth(); i++){
+            for(int j = 0; j < super.getHeight(); j++){
                 nextPopulation[i][j] = new Agent(population[i][j].getState(), population[i][j].isEdge, population[i][j].isCorner, population[i][j].getxPosition(), population[i][j].getyPosition());
             }
         }
-        currInfected = 0; susceptible = 0; recovered = 0;CARRIER = 0; HOSPITALIZED = 0; DEAD = 0;
-        int totalPop = 0;
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
+        int currInfected = 0, susceptible = 0, recovered = 0,CARRIER = 0, HOSPITALIZED = 0, DEAD = 0;
+
+        for(int x = 0; x < super.getWidth(); x++){
+            for(int y = 0; y < super.getHeight(); y++){
                 State nextState = applyRule(x,y);
                 if(nextState == State.INFECTED){ currInfected++; }
                 if(nextState == State.SUSCEPTIBLE){ susceptible++; }
@@ -59,14 +62,20 @@ public class StochasticPopulation extends Population {
                 nextPopulation[x][y].setState( nextState );
             }
         }
-        totalPop = currInfected + susceptible + recovered + CARRIER + HOSPITALIZED;
-        System.out.println("Susceptible: " + susceptible + "\nCarier: " + CARRIER + "\nInfected: " + currInfected + "\nHospitalized: " + HOSPITALIZED + "\nRecovered: " + recovered + "\nDead: " + DEAD + "\nTotal Peeps " + totalPop );
+
+        int totalPop = currInfected + susceptible + recovered + CARRIER + HOSPITALIZED;
+        System.out.println(susceptible + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + recovered + "," + DEAD + "," + totalPop );
+
         //finally we actually change the state of our real population
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
+        for(int x = 0; x < super.getWidth(); x++){
+            for(int y = 0; y < super.getHeight(); y++){
                 population[x][y].setState(nextPopulation[x][y].getState());
             }
         }
+        if(currInfected + CARRIER + HOSPITALIZED > 0)
+            return true;
+        else
+            return false;
     }
 
     /**

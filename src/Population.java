@@ -10,6 +10,10 @@ public abstract class Population {
     private int height, width;
     public Agent[][] population;
 
+    public Population(){
+        this(40, 40);
+    }
+
     public Population(int height, int width){
         this.height = height;
         this.width = width;
@@ -29,7 +33,7 @@ public abstract class Population {
     /**
      * how the pop is updated from step to step.
      */
-    public abstract void update();
+    public abstract boolean update();
 
     /**
      *  set the first patients that have the virus(es)
@@ -61,6 +65,17 @@ public abstract class Population {
         return population[x][y];
     }
 
+    /**
+     * height getter
+     * @return height
+     */
+    public int getHeight(){return height;}
+
+    /**
+     * width getter
+     * @return width
+     */
+    public int getWidth(){return width;}
 
     /**
      *

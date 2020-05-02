@@ -12,8 +12,8 @@ public class TwoVirusPopulation extends Population{
     }
 
     @Override
-    public void update() {
-
+    public boolean update() {
+        return false;
     }
 
     @Override

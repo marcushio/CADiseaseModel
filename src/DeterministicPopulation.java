@@ -25,7 +25,7 @@ public class DeterministicPopulation extends Population {
     }
 
     @Override
-    public void update(){
+    public boolean update(){
         Agent[][] nextPopulation = new Agent[width][height];
         //annoying I have to manually copy agents because I don't want to get a reference to the population
         for(int i = 0; i < width; i++){
@@ -52,6 +52,10 @@ public class DeterministicPopulation extends Population {
                 population[x][y].setState(nextPopulation[x][y].getState());
             }
         }
+        if (susceptible + currInfected > 0)
+            return true;
+        else
+            return false;
     }
 
     @Override
