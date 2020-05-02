@@ -31,8 +31,8 @@ public class Display {
         this.population = population;
         this.popHeight = population.getHeight();
         this.popWidth = population.getWidth();
-        cellHeight = windowHeight / popHeight > 1 ? windowHeight / popHeight : 1 ;
-        cellWidth = windowWidth / popWidth > 1 ? windowWidth / popWidth : 1 ;
+        cellHeight = windowHeight / popHeight > 2 ? windowHeight / popHeight : 2 ;
+        cellWidth = windowWidth / popWidth > 2 ? windowWidth / popWidth : 2 ;
         root = new VBox();
         metrics = new HBox();
         //populationGraphic = new Canvas(800, 800);

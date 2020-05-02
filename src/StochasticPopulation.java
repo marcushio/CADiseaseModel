@@ -11,9 +11,11 @@ import java.util.List;
 public class StochasticPopulation extends Population {
 //    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
 //            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
+
+    //*high chance of carrier
     private double[] probStoI = {0.0, 0.5 , 0.36, 0.7, 0.8, 0.55, 0.59, 0.7, 0.60};
 
-    private double carrierConversionChance = 0.5/14.0;
+    private double carrierConversionChance = 0.15/14.0;
     private double carrierRecoveryChance = 0.5/14.0;
     private double carrierDeathRate = 0.0005 /14.0;
 
@@ -23,6 +25,22 @@ public class StochasticPopulation extends Population {
 
     private double hospitalizedDeathRate = 0.05/14.0;
     private double hospitalizedRecoveryRate = 0.95/14.0;
+    //*/
+
+    /*low chance of no symptoms, roughly 3% mortality
+    private double[] probStoI = {0.0, 0.5 , 0.36, 0.7, 0.8, 0.55, 0.59, 0.7, 0.60};
+
+    private double carrierConversionChance = 0.95;
+    private double carrierRecoveryChance = 0.005;
+    private double carrierDeathRate = 0.00025;
+
+    private double infectedHostpitalizationRate = 0.008 ;
+    private double infectedDeathRate = 0.003 ;
+    private double infectedRecoveryRate = 0.12;
+
+    private double hospitalizedDeathRate = 0.005;
+    private double hospitalizedRecoveryRate = 0.05;
+    //*/
 
     private int startX, startY;
 
@@ -64,7 +82,7 @@ public class StochasticPopulation extends Population {
         }
 
         int totalPop = currInfected + susceptible + recovered + CARRIER + HOSPITALIZED;
-        System.out.println(susceptible + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + recovered + "," + DEAD);
+        System.out.println(susceptible + "," + recovered  + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + DEAD);
 
         //finally we actually change the state of our real population
         for(int x = 0; x < super.getWidth(); x++){
@@ -72,7 +90,8 @@ public class StochasticPopulation extends Population {
                 population[x][y].setState(nextPopulation[x][y].getState());
             }
         }
-        if(currInfected + CARRIER > 0)
+
+        if(currInfected + CARRIER + HOSPITALIZED > 0)
             return true;
         else
             return false;
@@ -116,7 +135,7 @@ public class StochasticPopulation extends Population {
                 return State.INFECTED;
         } else if (thisAgentState == State.HOSPITALIZED){ //if hospitalized you have chances to recover and die
             if(Math.random() < hospitalizedRecoveryRate)//chance recover per day in the hospital
-                return State.HOSPITALIZED;
+                return State.RECOVERED;
             else if(Math.random() < hospitalizedDeathRate) //chance to die per day in the hospital
                 return State.DEAD;
             else
