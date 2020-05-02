@@ -43,6 +43,7 @@ public class StochasticPopulation extends Population {
     //*/
 
     private int startX, startY;
+    private int totalInfected = 0, totalHospitalized = 0;
 
     public StochasticPopulation() {
         this(200, 200);
@@ -116,18 +117,20 @@ public class StochasticPopulation extends Population {
                 return State.ASYMPTOMATIC_CARRIER;
             }
         } else if (thisAgentState == State.ASYMPTOMATIC_CARRIER){ //if asymptomatic, then you have chances to recover, die, or display symptoms
-            if(Math.random() < carrierConversionChance) //chance to display symptoms
+            if(Math.random() < carrierConversionChance) { //chance to display symptoms
+                totalInfected++;
                 return State.INFECTED;
-            else if(Math.random() < carrierDeathRate) //chance to die without symptoms
+            } else if(Math.random() < carrierDeathRate) //chance to die without symptoms
                 return State.DEAD;
             else if(Math.random() < carrierRecoveryChance) //chance to recover without showing anything
                 return State.RECOVERED;
             else
                 return State.ASYMPTOMATIC_CARRIER;
         } else if (thisAgentState == State.INFECTED){ //if infected then you have chances to get hospitalized, recover, or die
-            if(Math.random() < infectedHostpitalizationRate)//chance to get hospitalized
+            if(Math.random() < infectedHostpitalizationRate) {//chance to get hospitalized
+                totalHospitalized++;
                 return State.HOSPITALIZED;
-            else if(Math.random() < infectedDeathRate) //chance to die at home
+            }else if(Math.random() < infectedDeathRate) //chance to die at home
                 return State.DEAD;
             else if(Math.random() < infectedRecoveryRate) //chance to recover at home
                 return State.RECOVERED;
@@ -191,4 +194,7 @@ public class StochasticPopulation extends Population {
         }
         return neighborhood;
     }
+
+    public int getTotalInfected(){return totalInfected;}
+    public int getTotalHospitalized(){return totalHospitalized;}
 }

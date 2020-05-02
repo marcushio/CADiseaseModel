@@ -4,7 +4,8 @@ import java.util.TimerTask;
 
 public class Controller extends TimerTask {
     //private StochasticPopulation stochasticPopulation;
-    private Population population;  
+//    private Population population;
+    private StochasticPopulation population;
     private Display display;
     private int time = 1;
     //width and height of population
@@ -19,7 +20,8 @@ public class Controller extends TimerTask {
     }
 
     public Controller(){//this one is for when we don't need a display
-        this.population = new DeterministicPopulation();
+        this.population = new StochasticPopulation();
+//        this.population = new DeterministicPopulation();
     }
 
     public void run(){
@@ -29,6 +31,10 @@ public class Controller extends TimerTask {
         }
         if(running) {
             running = population.update();
+            if(!running){
+                System.out.println("Total Infected: " + population.getTotalInfected());
+                System.out.println("Total Hospitalized: " + population.getTotalHospitalized());
+            }
             time++;
         }
     }
