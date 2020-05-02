@@ -24,7 +24,7 @@ public class Controller extends TimerTask {
 
     public void run(){
         if(header) {
-            System.out.println("Susceptible,Carier,Infected,Hospitalized,Recovered,Dead,Total Peeps");
+            System.out.println("Susceptible,Carier,Infected,Hospitalized,Recovered,Dead");
             header = false;
         }
         if(running) {

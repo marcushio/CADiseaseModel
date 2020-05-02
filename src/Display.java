@@ -24,10 +24,15 @@ public class Display {
     // private int popHeight = 20, popWidth = 20;
     private int cellHeight = 20, cellWidth = 20;
     private int popHeight = 40, popWidth = 40;
+    private int windowHeight = 830, windowWidth = 810;
 
     public Display(Stage primaryStage, Population population){
         this.primaryStage = primaryStage;
         this.population = population;
+        this.popHeight = population.getHeight();
+        this.popWidth = population.getWidth();
+        cellHeight = windowHeight / popHeight > 1 ? windowHeight / popHeight : 1 ;
+        cellWidth = windowWidth / popWidth > 1 ? windowWidth / popWidth : 1 ;
         root = new VBox();
         metrics = new HBox();
         //populationGraphic = new Canvas(800, 800);
@@ -35,7 +40,7 @@ public class Display {
         //root.getChildren().add(metrics);
         root.getChildren().add(populationGraphic);
         primaryStage.setTitle("Covid-19 modeling");
-        primaryStage.setScene(new Scene(root, 810, 830));
+        primaryStage.setScene(new Scene(root, windowWidth, windowHeight));
         primaryStage.show();
     }
 

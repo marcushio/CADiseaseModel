@@ -3,6 +3,8 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Marcus Trujillo
  * @version 4/2/2020
@@ -15,16 +17,19 @@ public class Agent {
     private ObjectProperty<Color> color = new ColorPicker(Color.GREEN).valueProperty() ;
     private State state;
     private State prevState;
-    private ArrayList<State> history;
+    private ArrayList<Agent> neighborhood;
+    private List<State> history;
     private int xPosition;
     private int yPosition;
     public boolean isEdge;
     public boolean isCorner;
+
     //do these fellaz know they're neighborssssss?
     //we can add all kinds of fun things later but for now these guys just have states
     //private float vulnerability; //odds of death if infected
 
     public Agent(State state, boolean isEdge, boolean isCorner, int xPosition, int yPosition){
+        neighborhood = null;
         this.state = state;
         this.isEdge = isEdge;
         this.isCorner = isCorner;
@@ -81,4 +86,6 @@ public class Agent {
         this.yPosition = yPosition;
     }
 
+    public ArrayList<Agent> getNeighborhood(){return neighborhood;}
+    public void setNeighborhood(ArrayList<Agent> neighborhood){this.neighborhood = neighborhood;}
 }

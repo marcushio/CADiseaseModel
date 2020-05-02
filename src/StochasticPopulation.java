@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Marcus Trujillo
@@ -12,22 +13,21 @@ public class StochasticPopulation extends Population {
 //            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
     private double[] probStoI = {0.0, 0.5 , 0.36, 0.7, 0.8, 0.55, 0.59, 0.7, 0.60};
 
-//    int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, CARRIER = 0, HOSPITALIZED = 0, DEAD = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
-    private double carrierConversionChance = 0.05;
-    private double carrierRecoveryChance = 0.05;
-    private double carrierDeathRate = 0.05;
+    private double carrierConversionChance = 0.5/14.0;
+    private double carrierRecoveryChance = 0.5/14.0;
+    private double carrierDeathRate = 0.0005 /14.0;
 
-    private double infectedHostpitalizationRate = 0.05;
-    private double infectedDeathRate = 0.05;
-    private double infectedRecoveryRate = 0.05;
+    private double infectedHostpitalizationRate = 0.2 / 14.0;
+    private double infectedDeathRate = 0.005/14.0;
+    private double infectedRecoveryRate = 1.0/14.0;
 
-    private double hospitalizedDeathRate = 0.05;
-    private double hospitalizedRecoveryRate = 0.05;
+    private double hospitalizedDeathRate = 0.05/14.0;
+    private double hospitalizedRecoveryRate = 0.95/14.0;
 
     private int startX, startY;
 
     public StochasticPopulation() {
-        this(40, 40);
+        this(200, 200);
     }
     public StochasticPopulation(int height, int width) {
         super(height, width);
@@ -64,7 +64,7 @@ public class StochasticPopulation extends Population {
         }
 
         int totalPop = currInfected + susceptible + recovered + CARRIER + HOSPITALIZED;
-        System.out.println(susceptible + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + recovered + "," + DEAD + "," + totalPop );
+        System.out.println(susceptible + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + recovered + "," + DEAD);
 
         //finally we actually change the state of our real population
         for(int x = 0; x < super.getWidth(); x++){
@@ -72,7 +72,7 @@ public class StochasticPopulation extends Population {
                 population[x][y].setState(nextPopulation[x][y].getState());
             }
         }
-        if(currInfected + CARRIER + HOSPITALIZED > 0)
+        if(currInfected + CARRIER > 0)
             return true;
         else
             return false;
@@ -132,5 +132,44 @@ public class StochasticPopulation extends Population {
     public void setPatientZero(){population[startX][startY].setState(State.INFECTED);}
     public Agent[][] getPopulation(){
         return this.population;
+    }
+
+    public ArrayList<Agent> getNeighborhood (int x, int y) {
+
+
+        Agent agent = population[x][y];
+        ArrayList<Agent> neighborhood = agent.getNeighborhood();
+        if (neighborhood == null) {
+            neighborhood = new ArrayList<Agent>();
+
+            //establish wraparound for the map
+            int left = x - 1;
+            int right = x + 1;
+            int up = y + 1;
+            int down = y - 1;
+            if (left == -1)
+                left = super.getWidth() - 1;
+            if (right == super.getWidth())
+                right = 0;
+            if (down == -1)
+                down = super.getHeight() - 1;
+            if (up == super.getHeight())
+                up = 0;
+
+            //populate the neighborhood
+            neighborhood.add(population[left][up]);
+            neighborhood.add(population[left][y]);
+            neighborhood.add(population[left][down]);
+            neighborhood.add(population[x][up]);
+            neighborhood.add(population[x][y]);
+            neighborhood.add(population[x][down]);
+            neighborhood.add(population[right][up]);
+            neighborhood.add(population[right][y]);
+            neighborhood.add(population[right][down]);
+
+            //save neighborhood to prevent recalculation
+            agent.setNeighborhood(neighborhood);
+        }
+        return neighborhood;
     }
 }
