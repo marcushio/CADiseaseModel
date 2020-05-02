@@ -169,13 +169,13 @@ public class StochasticPopulation extends Population {
             int right = x + 1;
             int up = y + 1;
             int down = y - 1;
-            if (left == -1)
+            if (left == -1) //if left is outside of map, wrap around
                 left = super.getWidth() - 1;
-            if (right == super.getWidth())
+            if (right == super.getWidth()) //if right is outside of map, wrap around
                 right = 0;
-            if (down == -1)
+            if (down == -1) //if down is outside of map, wrap around
                 down = super.getHeight() - 1;
-            if (up == super.getHeight())
+            if (up == super.getHeight()) //if up is outside of map, wrap around
                 up = 0;
 
             //populate the neighborhood
@@ -183,7 +183,7 @@ public class StochasticPopulation extends Population {
             neighborhood.add(population[left][y]);
             neighborhood.add(population[left][down]);
             neighborhood.add(population[x][up]);
-            neighborhood.add(population[x][y]);
+//            neighborhood.add(population[x][y]); //dont need to add yourself to your map
             neighborhood.add(population[x][down]);
             neighborhood.add(population[right][up]);
             neighborhood.add(population[right][y]);
