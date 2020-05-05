@@ -23,7 +23,6 @@ public class TwoVirusPopulation extends Population{
 
     }
 
-    @Override
     State applyRule(int x, int y) {
         return null;
     }

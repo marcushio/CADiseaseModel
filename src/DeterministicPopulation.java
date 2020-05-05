@@ -64,7 +64,6 @@ public class DeterministicPopulation extends Population {
         return sickNeighbors;
     }
 
-    @Override
     public State applyRule(int x, int y){
         ArrayList<Agent> neighborhood = super.getNeighborhood(x,y);
         State thisAgentState = population[x][y].getState();

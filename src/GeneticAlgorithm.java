@@ -11,7 +11,7 @@ public class GeneticAlgorithm{
     private ArrayList<ArrayList<Double>> currentGeneration = new ArrayList<>();
     private Random random = new Random();
     double probNovelStoI_1, probNovelStoI_2, probNovelStoI_3, probNovelStoI_4, probNovelStoI_5,
-            probNovelStoI_6, probNovelStoI_7, probNovelStoI_8 ;
+            probNovelStoI_6, probNovelStoI_7, probNovelStoI_8;
     public boolean running;
 
     public GeneticAlgorithm() {

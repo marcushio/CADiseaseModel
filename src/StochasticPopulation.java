@@ -11,7 +11,7 @@ public class StochasticPopulation extends Population {
 //    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
 //            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
     private double probStoI_1 = .5 , probStoI_2 = .36, probStoI_3 = .7, probStoI_4 = .8, probStoI_5 = .55,
-            probStoI_6 = .59, probStoI_7 = .7, probStoI_8 = .60;
+            probStoI_6 = .59, probStoI_7 = .7, probStoI_8 = .75;
 
     int currInfected = 0, additionalInfected = 0, recovered = 0, susceptible = 0, novelInfectd = 0, novelRecovered = 0, novelSusceptible = 0; //here for debugs
     private int width = 40, height = 40;

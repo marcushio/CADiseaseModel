@@ -26,6 +26,9 @@ public abstract class Population {
         }
     }
 
+    protected Population() {
+    }
+
     /**
      * how the pop is updated from step to step.
      */
@@ -36,10 +39,11 @@ public abstract class Population {
      */
     abstract void setPatientZero();
 
+
     /**
      * apply a rule in order to figure out what an agent's next state should be
-     */
     abstract State applyRule(int x, int y);
+     */
 
     /**
      *
