@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="357b7eaf-327f-4e5c-8d7d-6263ea9da974" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Coordinate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MapAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MapDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MapPopulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project 2/Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project 2/Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project 2/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project 2/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project 2/Population.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project 2/Population.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeterministicPopulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeterministicPopulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GeneticAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneticAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Population.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Population.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StochasticPopulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StochasticPopulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TwoVirusPopulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoVirusPopulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConfigFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConfigFileWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +95,7 @@
       <workItem from="1585838420181" duration="25047000" />
       <workItem from="1586112877832" duration="73692000" />
       <workItem from="1587846815681" duration="43314000" />
-      <workItem from="1588306202121" duration="24804000" />
+      <workItem from="1588306202121" duration="25902000" />
     </task>
     <servers />
   </component>
