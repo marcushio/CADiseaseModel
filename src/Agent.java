@@ -24,6 +24,21 @@ public class Agent {
     public boolean isEdge;
     public boolean isCorner;
 
+    //alternate values for progression
+    private double asymptomaticRate = 0.8;
+    private double hospitalizationRate = 0.2;
+    private double hospitalMortalityRate = 0.2;
+    private double infectedMortalityRate = 0.03;
+
+    private int daysToIncubate;
+    private int daysWithSymptoms;
+    private int daysInHospital;
+
+    private int timeSenseInfection;
+    private boolean showSymptoms;
+    private boolean getHospitalized;
+    //end instance variables
+
     //do these fellaz know they're neighborssssss?
     //we can add all kinds of fun things later but for now these guys just have states
     //private float vulnerability; //odds of death if infected
@@ -88,4 +103,27 @@ public class Agent {
 
     public ArrayList<Agent> getNeighborhood(){return neighborhood;}
     public void setNeighborhood(ArrayList<Agent> neighborhood){this.neighborhood = neighborhood;}
+
+    //alternate progression logic starts here
+    public void infect(){
+        if(this.state == State.SUSCEPTIBLE){
+            //infect this tile and establish its progression through the infection
+        }
+        //otherwise do nothing
+    }
+
+    public void progress(){
+        switch(this.state){
+            case SUSCEPTIBLE:
+                break;
+            case ASYMPTOMATIC_CARRIER:
+                break;
+            case INFECTED:
+                break;
+            case HOSPITALIZED:
+                break;
+            default: //for recovered and dead there is no next state, so do nothing
+                break;
+        }
+    }
 }

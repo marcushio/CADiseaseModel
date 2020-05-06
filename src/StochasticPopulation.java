@@ -158,7 +158,6 @@ public class StochasticPopulation extends Population {
 
     public ArrayList<Agent> getNeighborhood (int x, int y) {
 
-
         Agent agent = population[x][y];
         ArrayList<Agent> neighborhood = agent.getNeighborhood();
         if (neighborhood == null) {
