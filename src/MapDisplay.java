@@ -31,13 +31,10 @@ public class MapDisplay {
     private int Y_FRONTIER = 1000;
     private int NODE_RADIUS = 8;
     private double SCALE_FACTOR = NODE_RADIUS *2;
-    private HBox root;
     private Pane modelDisplay = new Pane();
     private ScrollPane modelScroll = new ScrollPane(modelDisplay);
     private MapPopulation population;
     private List<Circle> nodeViews = new ArrayList<>();
-    private ListProperty<String> logEntries = new SimpleListProperty<String>();
-    private SimpleStringProperty lastEntry = new SimpleStringProperty();
     private Group networkShapes = new Group();
     /**
      * Constructor
@@ -59,8 +56,6 @@ public class MapDisplay {
     }
 
     private void makeNodes(){
-        //Map<Coordinate,Node> coordinateNodeMap = network.getCoordinateNodeMap();
-        //Set<Coordinate> coordinates = coordinateNodeMap.keySet();
         int i = 0; int j = 0;
         //for(Coordinate coordinate : coordinates){
         for(MapAgent agent : population.getPopulation() ){
@@ -68,7 +63,6 @@ public class MapDisplay {
             Circle newCircle = new Circle(agent.getX()*SCALE_FACTOR,agent.getY()*SCALE_FACTOR, NODE_RADIUS, Paint.valueOf("blue"));
             newCircle.setStrokeWidth(NODE_RADIUS/2);
             newCircle.fillProperty().bind(agent.getColor());
-            //newCircle.strokeProperty().bind(ithNode.getStrokeColor()); I think strokes should always be blk
             nodeViews.add(newCircle);
             networkShapes.getChildren().add(newCircle);
             addOutgoingLines(agent);

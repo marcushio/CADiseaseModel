@@ -36,7 +36,7 @@ public class MapPopulation extends Population{
             population.add( agent1 );
             population.add( agent2 );
         }
-        //setPatientZero();
+        setPatientZero();
     }
 
     public void update() {
@@ -47,8 +47,11 @@ public class MapPopulation extends Population{
             nextGeneration.add(nextStateAgent);
         }
         for(MapAgent agent : nextGeneration){
-
+            int index = 0;
+            population.get(index).setState( agent.getState() );
         }
+        //for a test
+        population.get(0).setState(State.INFECTED);
     }
 
     /**
@@ -62,7 +65,7 @@ public class MapPopulation extends Population{
      * set the first person with the disease
      */
     public void setPatientZero() {
-        population.get(50).setState(State.INFECTED);
+        population.get(0).setState(State.INFECTED);
     }
 
     /**
