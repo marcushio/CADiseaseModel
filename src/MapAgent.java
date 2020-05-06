@@ -52,6 +52,13 @@ public class MapAgent {
      */
     public void setState(State newState){
         this.state = newState;
+        if( newState.equals(State.INFECTED) ){
+            color.set(Color.RED);
+        } else if ( newState.equals(State.SUSCEPTIBLE) ){
+            color.set(Color.GREEN);
+        } else if ( newState.equals(State.RECOVERED) ){
+            color.set(Color.BLUE);
+        }
     }
 
     /**

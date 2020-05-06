@@ -50,8 +50,7 @@ public class MapPopulation extends Population{
             int index = 0;
             population.get(index).setState( agent.getState() );
         }
-        //for a test
-        population.get(0).setState(State.INFECTED);
+        population.get(5).setState(State.INFECTED);
     }
 
     /**
