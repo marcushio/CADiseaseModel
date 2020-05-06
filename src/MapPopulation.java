@@ -16,7 +16,7 @@ public class MapPopulation extends Population{
                    probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
     private int height, width;
     private String filePath = "C:\\Users\\marcu\\OneDrive - University of New Mexico\\CS423 Complex adaptive systems\\Project3\\edges.txt" ; //definitely take this in from commandline in the future
-    private ArrayList<Agent> population = new ArrayList<>();
+    private ArrayList<MapAgent> population = new ArrayList<>();
     private List<String[]> edgeSpecs = new ArrayList<>(); //Each entry has start and end coordinates for each edge i.e ["1", "2", "3", "4"]
 
     public MapPopulation(int height, int width){
@@ -26,11 +26,11 @@ public class MapPopulation extends Population{
         for(String[] edge : edgeSpecs){
             int startX = Integer.parseInt(edge[0]);
             int startY = Integer.parseInt(edge[1]);
-            int endY = Integer.parseInt(edge[2]);
-            int endX = Integer.parseInt(edge[3]);
+            int endX = Integer.parseInt(edge[2]);
+            int endY = Integer.parseInt(edge[3]);
 
-            Agent agent1 = new Agent(State.SUSCEPTIBLE, startX, startY);
-            Agent agent2 = new Agent(State.SUSCEPTIBLE, endX, endY);
+            MapAgent agent1 = new MapAgent(State.SUSCEPTIBLE, startX, startY);
+            MapAgent agent2 = new MapAgent(State.SUSCEPTIBLE, endX, endY);
             agent1.addNeighbor( agent2 );
             agent2.addNeighbor( agent1 );
             population.add( agent1 );
@@ -41,17 +41,20 @@ public class MapPopulation extends Population{
 
     public void update() {
         ArrayList<MapAgent> nextGeneration = new ArrayList<>();
-        for(Agent agent : population){
+        for(MapAgent agent : population){
             State nextState = getNextState(agent);
-            MapAgent nextStateAgent = new MapAgent(agent.getxPosition(), agent.getyPosition(), nextState );
+            MapAgent nextStateAgent = new MapAgent(nextState , agent.getX(), agent.getY());
             nextGeneration.add(nextStateAgent);
+        }
+        for(MapAgent agent : nextGeneration){
+
         }
     }
 
     /**
      * @return our collection of Agents for this population
      */
-    public List<Agent> getPopulation(){
+    public List<MapAgent> getPopulation(){
         return population;
     }
 
@@ -67,7 +70,7 @@ public class MapPopulation extends Population{
      */
     public List<String[]> getEdgeSpecs() {return edgeSpecs; }
 
-    private State getNextState(Agent agent){
+    private State getNextState(MapAgent agent){
         double transition = Math.random();
         State thisAgentState = agent.getState();
         int sickNeighbors = agent.countSickNeighbors();

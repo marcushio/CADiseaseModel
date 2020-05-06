@@ -1,15 +1,22 @@
+import javafx.beans.property.ObjectProperty;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Marcus Trujillo
  * @version 5/1/20
  */
 public class MapAgent {
-    private ArrayList<MapAgent> neighbors;
+    private List<MapAgent> neighbors;
     private int x, y;
     private State state;
+    private ObjectProperty<Color> color = new ColorPicker(Color.GREEN).valueProperty() ;
 
-    public MapAgent(int x, int y, State state){
+    public MapAgent(State state, int x, int y){
+        neighbors = new ArrayList<MapAgent>();
         this.x = x;
         this.y = y;
         this.state = state;
@@ -65,6 +72,15 @@ public class MapAgent {
      */
     public State getState(){ return state; }
 
+    /**
+     * @return this agent's color which is an object property
+     */
+    public ObjectProperty<Color> getColor() { return color; }
+
+    /**
+     *
+     */
+    public List<MapAgent> getNeighbors(){ return neighbors; }
 
 
 

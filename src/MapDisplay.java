@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +29,8 @@ import java.util.Set;
 public class MapDisplay {
     private int X_FRONTIER = 1000;
     private int Y_FRONTIER = 1000;
-    private int NODE_RADIUS = 10;
-    private double SCALE_FACTOR = NODE_RADIUS *3;
+    private int NODE_RADIUS = 8;
+    private double SCALE_FACTOR = NODE_RADIUS *2;
     private HBox root;
     private Pane modelDisplay = new Pane();
     private ScrollPane modelScroll = new ScrollPane(modelDisplay);
@@ -64,9 +63,9 @@ public class MapDisplay {
         //Set<Coordinate> coordinates = coordinateNodeMap.keySet();
         int i = 0; int j = 0;
         //for(Coordinate coordinate : coordinates){
-        for(Agent agent : population.getPopulation() ){
+        for(MapAgent agent : population.getPopulation() ){
             //Node ithNode = coordinateNodeMap.get(coordinate);
-            Circle newCircle = new Circle(agent.getxPosition()*SCALE_FACTOR,agent.getyPosition()*SCALE_FACTOR, NODE_RADIUS, Paint.valueOf("blue"));
+            Circle newCircle = new Circle(agent.getX()*SCALE_FACTOR,agent.getY()*SCALE_FACTOR, NODE_RADIUS, Paint.valueOf("blue"));
             newCircle.setStrokeWidth(NODE_RADIUS/2);
             newCircle.fillProperty().bind(agent.getColor());
             //newCircle.strokeProperty().bind(ithNode.getStrokeColor()); I think strokes should always be blk
@@ -87,13 +86,13 @@ public class MapDisplay {
         return (coordinate * SCALE_FACTOR);
     }
 
-    private void addOutgoingLines(Agent node) {
-        for(Agent neighbor : node.getNeighbors()){
+    private void addOutgoingLines(MapAgent node) {
+        for(MapAgent neighbor : node.getNeighbors()){
             //Coordinate neighborCoordinate = neighbor.getCoordinate();
-            int neighborX = neighbor.getxPosition(); int neighborY = neighbor.getyPosition();
+            int neighborX = neighbor.getX(); int neighborY = neighbor.getY();
             networkShapes.getChildren().add(new Line(
-                    scaleLineCoordinate(node.getxPosition()),
-                    scaleLineCoordinate(node.getyPosition()),
+                    scaleLineCoordinate(node.getX()),
+                    scaleLineCoordinate(node.getY()),
                     scaleLineCoordinate(neighborX),
                     scaleLineCoordinate(neighborY))
             );
