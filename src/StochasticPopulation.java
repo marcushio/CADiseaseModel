@@ -46,7 +46,7 @@ public class StochasticPopulation extends Population {
     private int totalInfected = 0, totalHospitalized = 0;
 
     public StochasticPopulation() {
-        this(200, 200);
+        this(400, 400);
     }
     public StochasticPopulation(int height, int width) {
         super(height, width);
@@ -60,37 +60,39 @@ public class StochasticPopulation extends Population {
      */
     @Override
     public boolean update(){
-        Agent[][] nextPopulation = new Agent[super.getWidth()][super.getHeight()];
-        //annoying I have to manually copy agents because I don't want to get a reference to the population
-        for(int i = 0; i < super.getWidth(); i++){
-            for(int j = 0; j < super.getHeight(); j++){
-                nextPopulation[i][j] = new Agent(population[i][j].getState(), population[i][j].isEdge, population[i][j].isCorner, population[i][j].getxPosition(), population[i][j].getyPosition());
-            }
-        }
         int currInfected = 0, susceptible = 0, recovered = 0,CARRIER = 0, HOSPITALIZED = 0, DEAD = 0;
 
-        for(int x = 0; x < super.getWidth(); x++){
-            for(int y = 0; y < super.getHeight(); y++){
-                State nextState = applyRule(x,y);
-                if(nextState == State.INFECTED){ currInfected++; }
-                if(nextState == State.SUSCEPTIBLE){ susceptible++; }
-                if(nextState == State.RECOVERED){ recovered++; }
-                if(nextState == State.ASYMPTOMATIC_CARRIER){ CARRIER++; }
-                if(nextState == State.HOSPITALIZED){ HOSPITALIZED++; }
-                if(nextState == State.DEAD){ DEAD++; }
-                nextPopulation[x][y].setState( nextState );
+        //walk through the population, updating current states, progressing the virus
+        for(int i = 0; i < super.getWidth(); i++){
+            for(int j = 0; j < super.getHeight(); j++){
+                population[i][j].incrementTime();
             }
         }
 
-        int totalPop = currInfected + susceptible + recovered + CARRIER + HOSPITALIZED;
+        //walk through the population, infecting those exposed to the virus, counting the numbers of each state
+        for(int i = 0; i < super.getWidth(); i++){
+            for(int j = 0; j < super.getHeight(); j++){
+                State curState = population[i][j].getState();
+
+                if(curState == State.SUSCEPTIBLE){
+                    //if susceptible, check if getting exposed and infected
+                    if(Math.random() < probStoI[countSickNeighbors(i, j)]){
+                        population[i][j].infect();
+                    } else {
+                        //if not exposed, still count as susceptible
+                        susceptible++;
+                    }
+                }
+
+                if(curState == State.ASYMPTOMATIC_CARRIER){ CARRIER++; }
+                if(curState == State.INFECTED){ currInfected++; }
+                if(curState == State.HOSPITALIZED){ HOSPITALIZED++; }
+                if(curState == State.RECOVERED){ recovered++; }
+                if(curState == State.DEAD){ DEAD++; }
+            }
+        }
+
         System.out.println(susceptible + "," + recovered  + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + DEAD);
-
-        //finally we actually change the state of our real population
-        for(int x = 0; x < super.getWidth(); x++){
-            for(int y = 0; y < super.getHeight(); y++){
-                population[x][y].setState(nextPopulation[x][y].getState());
-            }
-        }
 
         if(currInfected + CARRIER + HOSPITALIZED > 0)
             return true;
@@ -105,53 +107,18 @@ public class StochasticPopulation extends Population {
      * @return the state resulting from applying this populations rules
      */
     public State applyRule(int x, int y){
-        //Math.random() produces a double 0<1
-        double transition = Math.random();
-        int sickNeighbors = countSickNeighbors(x,y);
-        State thisAgentState = population[x][y].getState();
-        if(thisAgentState == State.RECOVERED){ return State.RECOVERED; }
-        if(thisAgentState == State.DEAD){ return State.DEAD; }
-
-        if(thisAgentState == State.SUSCEPTIBLE) { //cover susceptible cases first
-            if (transition < probStoI[sickNeighbors]) {
-                return State.ASYMPTOMATIC_CARRIER;
-            }
-        } else if (thisAgentState == State.ASYMPTOMATIC_CARRIER){ //if asymptomatic, then you have chances to recover, die, or display symptoms
-            if(Math.random() < carrierConversionChance) { //chance to display symptoms
-                totalInfected++;
-                return State.INFECTED;
-            } else if(Math.random() < carrierDeathRate) //chance to die without symptoms
-                return State.DEAD;
-            else if(Math.random() < carrierRecoveryChance) //chance to recover without showing anything
-                return State.RECOVERED;
-            else
-                return State.ASYMPTOMATIC_CARRIER;
-        } else if (thisAgentState == State.INFECTED){ //if infected then you have chances to get hospitalized, recover, or die
-            if(Math.random() < infectedHostpitalizationRate) {//chance to get hospitalized
-                totalHospitalized++;
-                return State.HOSPITALIZED;
-            }else if(Math.random() < infectedDeathRate) //chance to die at home
-                return State.DEAD;
-            else if(Math.random() < infectedRecoveryRate) //chance to recover at home
-                return State.RECOVERED;
-            else
-                return State.INFECTED;
-        } else if (thisAgentState == State.HOSPITALIZED){ //if hospitalized you have chances to recover and die
-            if(Math.random() < hospitalizedRecoveryRate)//chance recover per day in the hospital
-                return State.RECOVERED;
-            else if(Math.random() < hospitalizedDeathRate) //chance to die per day in the hospital
-                return State.DEAD;
-            else
-                return State.HOSPITALIZED;
-        }
-        return State.SUSCEPTIBLE; //default return all logic above applies to non sus returns
+        //do nothing
+        return population[x][y].getState();
     }
 
     /**
      * our first case of the virus... dun dun dunnnn
      */
     @Override
-    public void setPatientZero(){population[startX][startY].setState(State.INFECTED);}
+    public void setPatientZero(){
+        population[startX][startY].infect();
+        population[startX][startY].makeBad();
+    }
     public Agent[][] getPopulation(){
         return this.population;
     }
