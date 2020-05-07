@@ -17,13 +17,10 @@ public class Agent {
     //why didn't I just add a dual infected state under a single state var. Why did I add this novelState var?
     private ObjectProperty<Color> color = new ColorPicker(Color.GREEN).valueProperty() ;
     private State state;
-    private State prevState;
     private ArrayList<Agent> neighborhood;
     private List<State> history;
     private int xPosition;
     private int yPosition;
-    public boolean isEdge;
-    public boolean isCorner;
 
     //alternate values for progression
     private Random r;
@@ -51,34 +48,34 @@ public class Agent {
     private boolean getHospitalized;
     //end instance variables
 
-    //do these fellaz know they're neighborssssss?
-    //we can add all kinds of fun things later but for now these guys just have states
-    //private float vulnerability; //odds of death if infected
 
-    public Agent(State state, boolean isEdge, boolean isCorner, int xPosition, int yPosition){
+    public Agent(){
+        this(null, 0,0);
+    }
+
+    public Agent(State state, int xPosition, int yPosition){
         neighborhood = null;
-        this.state = state;
-        this.isEdge = isEdge;
-        this.isCorner = isCorner;
+        history = new ArrayList<>();
+        this.setState(state);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         r = new Random();
     }
 
     public void setState(State newState){
-        prevState = state;
         state = newState;
-        if( newState.equals(State.INFECTED) ){
+        history.add(state);
+        if( state.equals(State.INFECTED) ){
             color.set(Color.RED);
-        } else if ( newState.equals(State.SUSCEPTIBLE) ){
+        } else if ( state.equals(State.SUSCEPTIBLE) ){
             color.set(Color.GREEN);
-        } else if ( newState.equals(State.RECOVERED) ){
+        } else if ( state.equals(State.RECOVERED) ){
             color.set(Color.BLUE);
-        } else if ( newState.equals(State.ASYMPTOMATIC_CARRIER) ){
+        } else if ( state.equals(State.ASYMPTOMATIC_CARRIER) ){
             color.set(Color.DARKRED);
-        } else if ( newState.equals(State.DEAD) ){
+        } else if ( state.equals(State.DEAD) ){
             color.set(Color.BLACK);
-        } else if ( newState.equals(State.HOSPITALIZED) ){
+        } else if ( state.equals(State.HOSPITALIZED) ){
             color.set(Color.ORANGE);
         }
     }
@@ -87,13 +84,7 @@ public class Agent {
         return state;
     }
 
-    public boolean isCorner() {
-        return isCorner;
-    }
 
-    public boolean isEdge() {
-        return isEdge;
-    }
 
     public int getxPosition(){
         return xPosition;
@@ -224,5 +215,19 @@ public class Agent {
             default: //for recovered and dead there is no next state, so do nothing
                 break;
         }
+    }
+
+    public boolean wasInfected(){
+        if(this.history.contains(State.INFECTED)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean wasHospitalized() {
+        if(this.history.contains(State.HOSPITALIZED)){
+            return true;
+        }
+        return false;
     }
 }

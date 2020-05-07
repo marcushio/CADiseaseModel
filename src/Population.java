@@ -20,12 +20,8 @@ public abstract class Population {
         population = new Agent[width][height];
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                boolean isCorner = false;
-                boolean isEdge = false;
-                if ( (x == 0 ) || (x == width - 1 ) || ( y == height -1)|| ( y == 0) ){isEdge = true;}
-                if ( (x == 0 && y == 0) || (x == 0 && y == height-1) || (x == width-1  && y == height-1)|| (x == width-1  && y == 0) ){ isCorner = true; isEdge = false; }
                 //population[x][y] = new Agent(State.SUSCEPTIBLE][ State.SUSCEPTIBLE][ isEdge][ isCorner][ x][ y); this was before 2 virus
-                population[x][y] = new Agent(State.SUSCEPTIBLE, isEdge, isCorner, x, y);
+                population[x][y] = new Agent(State.SUSCEPTIBLE, x, y);
             }
         }
     }
@@ -36,9 +32,12 @@ public abstract class Population {
     public abstract boolean update();
 
     /**
-     *  set the first patients that have the virus(es)
+     * our first case of the virus... dun dun dunnnn
      */
-    abstract void setPatientZero();
+    protected void setPatientZero(){
+        population[width / 2][height / 2].infect();
+        population[width / 2][height / 2].makeBad();
+    }
 
     /**
      * apply a rule in order to figure out what an agent's next state should be
@@ -84,68 +83,60 @@ public abstract class Population {
      * @return the neighborhood of this particular cell
      */
     public ArrayList<Agent> getNeighborhood (int x, int y){
-        ArrayList<Agent> neighborhood = new ArrayList<Agent>();
-        Agent agent = population[x][y];
-        //go through and find the status of this agent's neighborhoods
-        if(agent.isCorner){
-            if(x == 0){
-                if(y == 0){ //upper left corner
-                    neighborhood.add(population[x+1][y]);
-                    neighborhood.add(population[x+1][y+1]);
-                    neighborhood.add(population[x][y+1]);
-                } else { //lower left corner
-                    neighborhood.add(population[x+1][y]);
-                    neighborhood.add(population[x+1][y-1]);
-                    neighborhood.add(population[x][y-1]);
-                }
-            } else if (x == 20){
-                if(y == 0){//upper right corner
-                    neighborhood.add(population[x-1 ][y]);
-                    neighborhood.add(population[x-1 ][y+1]);
-                    neighborhood.add(population[x ][y+1]);
-                } else { //lower right corner
-                    neighborhood.add(population[x-1 ][y-1]);
-                    neighborhood.add(population[x-1 ][y]);
-                    neighborhood.add(population[x ][y-1]);
-                }
-            }
 
-        } else if (agent.isEdge){
-            if(x == 0){//left edges
-                neighborhood.add(population[x ][y-1]);
-                neighborhood.add(population[x ][y+1]);
-                neighborhood.add(population[x+1 ][y+1]);
-                neighborhood.add(population[x+1 ][y]);
-                neighborhood.add(population[x+1 ][y-1]);
-            } else if (x == width){//right edges
-                neighborhood.add(population[x-1 ][y-1]);
-                neighborhood.add(population[x-1 ][y+1]);
-                neighborhood.add(population[x-1 ][y]);
-                neighborhood.add(population[x ][y+1]);
-                neighborhood.add(population[x ][y-1]);
-            } else if (y == 0){//top edges
-                neighborhood.add(population[x ][y+1]);
-                neighborhood.add(population[x-1 ][y+1]);
-                neighborhood.add(population[x+1 ][y+1]);
-                neighborhood.add(population[x+1 ][y]);
-                neighborhood.add(population[x-1 ][y]);
-            } else if (y == height){//bottom edges
-                neighborhood.add(population[x ][y-1]);
-                neighborhood.add(population[x-1 ][y-1]);
-                neighborhood.add(population[x+1 ][y-1]);
-                neighborhood.add(population[x+1 ][y]);
-                neighborhood.add(population[x-1 ][y]);
-            }
-        } else { //agent is in a moore neighborhood
-            neighborhood.add(population[x-1][y]);
-            neighborhood.add(population[x-1][y-1]);
-            neighborhood.add(population[x-1][y+1]);
-            neighborhood.add(population[x+1 ][y]);
-            neighborhood.add(population[x+1 ][y-1]);
-            neighborhood.add(population[x+1 ][y+1]);
-            neighborhood.add(population[x][y-1]);
-            neighborhood.add(population[x][y+1]);
+        Agent agent = population[x][y];
+        ArrayList<Agent> neighborhood = agent.getNeighborhood();
+        if (neighborhood == null) {
+            neighborhood = new ArrayList<Agent>();
+
+            //establish wraparound for the map
+            int left = x - 1;
+            int right = x + 1;
+            int up = y + 1;
+            int down = y - 1;
+            if (left == -1) //if left is outside of map, wrap around
+                left = getWidth() - 1;
+            if (right == getWidth()) //if right is outside of map, wrap around
+                right = 0;
+            if (down == -1) //if down is outside of map, wrap around
+                down = getHeight() - 1;
+            if (up == getHeight()) //if up is outside of map, wrap around
+                up = 0;
+
+            //populate the neighborhood
+            neighborhood.add(population[left][up]);
+            neighborhood.add(population[left][y]);
+            neighborhood.add(population[left][down]);
+            neighborhood.add(population[x][up]);
+//            neighborhood.add(population[x][y]); //dont need to add yourself to your map
+            neighborhood.add(population[x][down]);
+            neighborhood.add(population[right][up]);
+            neighborhood.add(population[right][y]);
+            neighborhood.add(population[right][down]);
+
+            //save neighborhood to prevent recalculation
+            agent.setNeighborhood(neighborhood);
         }
         return neighborhood;
+    }
+
+    public int getTotalInfected(){
+        int counter = 0;
+        for(int i = 0; i < population.length; i++){
+            for(int j = 0; j < population[0].length; j++){
+                if(population[i][j].wasInfected()) counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int getTotalHospitalized(){
+        int counter = 0;
+        for(int i = 0; i < population.length; i++){
+            for(int j = 0; j < population[0].length; j++){
+                if(population[i][j].wasHospitalized()) counter++;
+            }
+        }
+        return counter;
     }
 }

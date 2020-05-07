@@ -30,7 +30,7 @@ public class DeterministicPopulation extends Population {
         //annoying I have to manually copy agents because I don't want to get a reference to the population
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                nextPopulation[i][j] = new Agent(population[i][j].getState(), population[i][j].isEdge, population[i][j].isCorner, population[i][j].getxPosition(), population[i][j].getyPosition());
+                nextPopulation[i][j] = new Agent(population[i][j].getState(), population[i][j].getxPosition(), population[i][j].getyPosition());
             }
         }
         currInfected = 0; susceptible = 0; recovered = 0;

@@ -5,7 +5,7 @@ import java.util.TimerTask;
 public class Controller extends TimerTask {
     //private StochasticPopulation stochasticPopulation;
 //    private Population population;
-    private StochasticPopulation population;
+    private Population population;
     private Display display;
     private int time = 1;
     //width and height of population
@@ -14,7 +14,7 @@ public class Controller extends TimerTask {
     private boolean header = true;
 
     public Controller(Stage primaryStage){
-        this.population = new StochasticPopulation();
+        this.population = new StochasticPopulation(width, height);
         //this.population = new DeterministicPopulation();
         this.display = new Display(primaryStage, population);
     }
