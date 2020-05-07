@@ -10,6 +10,9 @@ public abstract class Population {
     private int height, width;
     public Agent[][] population;
 
+    private double percentElderly = 0.2;
+    private double percentAdult = 0.8;
+
     public Population(){
         this(40, 40);
     }
@@ -20,8 +23,14 @@ public abstract class Population {
         population = new Agent[width][height];
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                //population[x][y] = new Agent(State.SUSCEPTIBLE][ State.SUSCEPTIBLE][ isEdge][ isCorner][ x][ y); this was before 2 virus
-                population[x][y] = new Agent(State.SUSCEPTIBLE, x, y);
+                double ageSelector = Math.random();
+                if(ageSelector < percentElderly){
+                    population[x][y] = new Elderly(State.SUSCEPTIBLE, x, y);
+                } else if(ageSelector < percentAdult){
+                    population[x][y] = new Adult(State.SUSCEPTIBLE, x, y);
+                } else {
+                    population[x][y] = new Child(State.SUSCEPTIBLE, x, y);
+                }
             }
         }
     }

@@ -27,25 +27,25 @@ public class Agent {
 
     private int t;
 
-    private double incStdev = 3.0;
-    private double incMean = 7.0;
-    private double sympStdev = 3.0;
-    private double sympMean = 7.0;
-    private double hospStdev = 3.0;
-    private double hospMean = 7.0;
+    protected double incStdev = 3.0;
+    protected double incMean = 7.0;
+    protected double sympStdev = 3.0;
+    protected double sympMean = 7.0;
+    protected double hospStdev = 3.0;
+    protected double hospMean = 7.0;
 
-    private double asymptomaticRate = 0.1;
-    private double hospitalizationRate = 0.2;
-    private double asymptomaticMortalityRate = 0.003;
-    private double infectedMortalityRate = 0.03;
-    private double hospitalMortalityRate = 0.2;
+    protected double asymptomaticRate = 0.1;
+    protected double hospitalizationRate = 0.2;
+    protected double asymptomaticMortalityRate = 0.003;
+    protected double infectedMortalityRate = 0.03;
+    protected double hospitalMortalityRate = 0.2;
 
-    private int daysAsymptomatic;
-    private int daysWithSymptoms;
-    private int daysInHospital;
+    protected int daysAsymptomatic;
+    protected int daysWithSymptoms;
+    protected int daysInHospital;
 
-    private boolean showSymptoms;
-    private boolean getHospitalized;
+    protected boolean showSymptoms;
+    protected boolean getHospitalized;
     //end instance variables
 
 
@@ -96,13 +96,6 @@ public class Agent {
 
     public ObjectProperty<Color> getColor(){
         return color;
-    }
-
-    public void setxPosition(int xPosition){
-        this.xPosition = xPosition;
-    }
-    public void setyPosition(int yPosition){
-        this.yPosition = yPosition;
     }
 
     public ArrayList<Agent> getNeighborhood(){return neighborhood;}
