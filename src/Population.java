@@ -10,12 +10,8 @@ public abstract class Population {
     private int height, width;
     public Agent[][] population;
 
-    private double percentElderly = 0.2;
-    private double percentAdult = 0.8;
-
-    public Population(){
-        this(40, 40);
-    }
+    private double percentElderly = 0.147; //percent of the population aged 62 and over in the US in the 2010 US Cencus
+    private double percentAdult = 0.647; //percent of the population aged 25 and over in the US in the 2010 US Cencus
 
     public Population(int height, int width){
         this.height = height;
@@ -44,8 +40,10 @@ public abstract class Population {
      * our first case of the virus... dun dun dunnnn
      */
     protected void setPatientZero(){
-        population[width / 2][height / 2].infect();
-        population[width / 2][height / 2].makeBad();
+        population[0][0].infect();
+        population[0][0].makeBad();
+//        population[width / 2][height / 2].infect();
+//        population[width / 2][height / 2].makeBad();
     }
 
     /**
@@ -147,5 +145,19 @@ public abstract class Population {
             }
         }
         return counter;
+    }
+
+    public int getTotalDeaths(){
+        int counter = 0;
+        for(int i = 0; i < population.length; i++){
+            for(int j = 0; j < population[0].length; j++){
+                if(population[i][j].hasDied()) counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int getTotalAgents(){
+        return population.length * population[0].length;
     }
 }

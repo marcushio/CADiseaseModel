@@ -223,4 +223,11 @@ public class Agent {
         }
         return false;
     }
+
+    public boolean hasDied() {
+        if(this.history.contains(State.DEAD)){
+            return true;
+        }
+        return false;
+    }
 }
