@@ -27,6 +27,8 @@ public class Agent {
 
     private int t;
 
+    private int daysNonContagious = 1;
+
     protected double incStdev = 3.0;
     protected double incMean = 7.0;
     protected double sympStdev = 3.0;
@@ -143,7 +145,7 @@ public class Agent {
     }
 
     public boolean isContagious(){
-        if(this.state == State.ASYMPTOMATIC_CARRIER && this.t > 0){
+        if(this.state == State.ASYMPTOMATIC_CARRIER && this.t > daysNonContagious - 1){
             return true;
         } else if(this.state == State.INFECTED || this.state == State.HOSPITALIZED){
             return true;
