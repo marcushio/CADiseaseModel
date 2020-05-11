@@ -1,0 +1,5 @@
+agent 1 1
+agent 2 2
+edge 1 1 2 2 
+agent 3 3 
+edge 2 2 3 3 

@@ -1,46 +1,1960 @@
-1 1 1 2
-1 1 2 1
-2 1 2 2
-1 2 1 3
-1 3 3 3
-3 3 3 4
-3 4 4 4
-4 4 6 6
-6 6 6 7
-6 7 6 8
-6 8 8 6
-12 12 11 19
-11 19 13 10
-21 19 22 22
-22 22 30 30
-15 1 17 3
-17 3 18 7
-18 7 22 12
-22 12 25 15
-25 15 25 20
-25 20 27 25
-27 25 30 30
-30 30 32 40
-32 40 43 50
-43 50 55 70
-55 70 80 50
-80 50 75 80
-75 80 76 81
-76 81 76 82
-76 82 78 88
-78 88 78 80 
-78 80 77 75
-77 75 74 71 
-74 71 70 62 
-70 62 60 60 
-60 60 58 58 
-58 58 56 52
-56 52 50 40 
-50 40 52 38
-52 38 55 32
-55 32 40 32
-40 32 41 29 
-41 29 42 27
-42 27 42 25 
-42 25 36 25 
-36 25 34 20
+agent 1 1
+agent 95 2
+edge 1 1 95 2
+agent 96 39
+edge 95 2 96 39
+agent 46 83
+edge 96 39 46 83
+agent 37 68
+edge 46 83 37 68
+agent 43 92
+edge 37 68 43 92
+agent 73 50
+edge 43 92 73 50
+agent 89 4
+edge 73 50 89 4
+agent 8 34
+edge 89 4 8 34
+agent 88 31
+edge 8 34 88 31
+agent 73 89
+edge 88 31 73 89
+agent 23 54
+edge 73 89 23 54
+agent 77 6
+edge 23 54 77 6
+agent 79 86
+edge 77 6 79 86
+agent 97 23
+edge 79 86 97 23
+agent 51 13
+edge 97 23 51 13
+agent 68 65
+edge 51 13 68 65
+agent 65 81
+edge 68 65 65 81
+agent 10 17
+edge 65 81 10 17
+agent 25 45
+edge 10 17 25 45
+agent 52 7
+edge 25 45 52 7
+agent 86 95
+edge 52 7 86 95
+agent 10 41
+edge 86 95 10 41
+agent 5 63
+edge 10 41 5 63
+agent 71 33
+edge 5 63 71 33
+agent 79 83
+edge 71 33 79 83
+agent 53 36
+edge 79 83 53 36
+agent 99 36
+edge 53 36 99 36
+agent 56 25
+edge 99 36 56 25
+agent 56 67
+edge 56 25 56 67
+agent 57 10
+edge 56 67 57 10
+agent 24 66
+edge 57 10 24 66
+agent 7 81
+edge 24 66 7 81
+agent 93 6
+edge 7 81 93 6
+agent 18 22
+edge 93 6 18 22
+agent 51 28
+edge 18 22 51 28
+agent 64 17
+edge 51 28 64 17
+agent 93 91
+edge 64 17 93 91
+agent 49 60
+edge 93 91 49 60
+agent 85 68
+edge 49 60 85 68
+agent 60 84
+edge 85 68 60 84
+agent 45 45
+edge 60 84 45 45
+agent 93 33
+edge 45 45 93 33
+agent 7 68
+edge 93 33 7 68
+agent 7 63
+edge 7 68 7 63
+agent 89 1
+edge 7 63 89 1
+agent 45 23
+edge 89 1 45 23
+agent 40 39
+edge 45 23 40 39
+agent 16 87
+edge 40 39 16 87
+agent 52 39
+edge 16 87 52 39
+agent 87 59
+edge 52 39 87 59
+agent 39 34
+edge 87 59 39 34
+agent 23 9
+edge 39 34 23 9
+agent 54 15
+edge 23 9 54 15
+agent 99 28
+edge 54 15 99 28
+agent 36 10
+edge 99 28 36 10
+agent 9 57
+edge 36 10 9 57
+agent 84 11
+edge 9 57 84 11
+agent 20 47
+edge 84 11 20 47
+agent 28 90
+edge 20 47 28 90
+agent 65 5
+edge 28 90 65 5
+agent 68 59
+edge 65 5 68 59
+agent 61 70
+edge 68 59 61 70
+agent 32 74
+edge 61 70 32 74
+agent 69 81
+edge 32 74 69 81
+agent 44 23
+edge 69 81 44 23
+agent 97 63
+edge 44 23 97 63
+agent 82 85
+edge 97 63 82 85
+agent 91 11
+edge 82 85 91 11
+agent 63 44
+edge 91 11 63 44
+edge 63 44 99 28
+agent 83 16
+edge 99 28 83 16
+agent 16 66
+edge 83 16 16 66
+agent 87 53
+edge 16 66 87 53
+agent 70 66
+edge 87 53 70 66
+agent 81 85
+edge 70 66 81 85
+agent 39 32
+edge 81 85 39 32
+agent 63 33
+edge 39 32 63 33
+agent 98 36
+edge 63 33 98 36
+agent 10 9
+edge 98 36 10 9
+agent 87 49
+edge 10 9 87 49
+agent 30 91
+edge 87 49 30 91
+agent 68 91
+edge 30 91 68 91
+agent 47 71
+edge 68 91 47 71
+agent 36 99
+edge 47 71 36 99
+agent 50 57
+edge 36 99 50 57
+agent 21 5
+edge 50 57 21 5
+agent 26 79
+edge 21 5 26 79
+agent 90 30
+edge 26 79 90 30
+agent 66 69
+edge 90 30 66 69
+agent 3 72
+edge 66 69 3 72
+agent 51 47
+edge 3 72 51 47
+agent 46 11
+edge 51 47 46 11
+agent 64 68
+edge 46 11 64 68
+agent 22 1
+edge 64 68 22 1
+agent 74 46
+edge 22 1 74 46
+agent 1 46
+edge 74 46 1 46
+agent 51 69
+edge 1 46 51 69
+agent 72 43
+edge 51 69 72 43
+agent 15 29
+edge 72 43 15 29
+agent 84 21
+edge 15 29 84 21
+agent 61 71
+edge 84 21 61 71
+agent 34 79
+edge 61 71 34 79
+agent 96 27
+edge 34 79 96 27
+agent 82 69
+edge 96 27 82 69
+agent 57 2
+edge 82 69 57 2
+agent 56 39
+edge 57 2 56 39
+agent 54 19
+edge 56 39 54 19
+agent 71 90
+edge 54 19 71 90
+agent 97 59
+edge 71 90 97 59
+agent 36 41
+edge 97 59 36 41
+agent 19 70
+edge 36 41 19 70
+agent 53 80
+edge 19 70 53 80
+agent 77 49
+edge 53 80 77 49
+agent 70 6
+edge 77 49 70 6
+agent 97 91
+edge 70 6 97 91
+agent 1 90
+edge 97 91 1 90
+agent 78 8
+edge 1 90 78 8
+agent 56 69
+edge 78 8 56 69
+agent 57 5
+edge 56 69 57 5
+agent 49 83
+edge 57 5 49 83
+agent 64 73
+edge 49 83 64 73
+agent 60 60
+edge 64 73 60 60
+agent 21 56
+edge 60 60 21 56
+agent 49 53
+edge 21 56 49 53
+agent 20 19
+edge 49 53 20 19
+agent 25 99
+edge 20 19 25 99
+agent 34 9
+edge 25 99 34 9
+agent 85 75
+edge 34 9 85 75
+agent 70 90
+edge 85 75 70 90
+agent 1 41
+edge 70 90 1 41
+agent 70 49
+edge 1 41 70 49
+agent 4 44
+edge 70 49 4 44
+agent 3 71
+edge 4 44 3 71
+agent 34 81
+edge 3 71 34 81
+agent 10 79
+edge 34 81 10 79
+agent 60 52
+edge 10 79 60 52
+agent 43 12
+edge 60 52 43 12
+agent 27 82
+edge 43 12 27 82
+agent 28 92
+edge 27 82 28 92
+agent 43 76
+edge 28 92 43 76
+agent 16 19
+edge 43 76 16 19
+agent 7 28
+edge 16 19 7 28
+agent 74 11
+edge 7 28 74 11
+agent 38 76
+edge 74 11 38 76
+agent 52 4
+edge 38 76 52 4
+agent 74 92
+edge 52 4 74 92
+agent 37 95
+edge 74 92 37 95
+agent 37 73
+edge 37 95 37 73
+agent 63 21
+edge 37 73 63 21
+agent 97 0
+edge 63 21 97 0
+agent 91 45
+edge 97 0 91 45
+agent 1 64
+edge 91 45 1 64
+agent 62 47
+edge 1 64 62 47
+agent 82 2
+edge 62 47 82 2
+agent 36 69
+edge 82 2 36 69
+agent 92 7
+edge 36 69 92 7
+edge 92 7 52 7
+agent 25 16
+edge 52 7 25 16
+agent 80 36
+edge 25 16 80 36
+agent 76 93
+edge 80 36 76 93
+agent 53 67
+edge 76 93 53 67
+agent 44 82
+edge 53 67 44 82
+agent 75 68
+edge 44 82 75 68
+agent 36 32
+edge 75 68 36 32
+agent 17 65
+edge 36 32 17 65
+agent 91 65
+edge 17 65 91 65
+edge 91 65 15 29
+agent 8 68
+edge 15 29 8 68
+agent 41 53
+edge 8 68 41 53
+agent 68 60
+edge 41 53 68 60
+agent 85 12
+edge 68 60 85 12
+agent 29 43
+edge 85 12 29 43
+agent 86 92
+edge 29 43 86 92
+agent 11 70
+edge 86 92 11 70
+agent 36 16
+edge 11 70 36 16
+agent 22 44
+edge 36 16 22 44
+agent 3 21
+edge 22 44 3 21
+agent 55 80
+edge 3 21 55 80
+agent 47 46
+edge 55 80 47 46
+agent 56 53
+edge 47 46 56 53
+agent 83 20
+edge 56 53 83 20
+agent 46 22
+edge 83 20 46 22
+agent 87 34
+edge 46 22 87 34
+agent 43 19
+edge 87 34 43 19
+agent 8 78
+edge 43 19 8 78
+agent 45 55
+edge 8 78 45 55
+agent 86 69
+edge 45 55 86 69
+agent 98 58
+edge 86 69 98 58
+agent 93 14
+edge 98 58 93 14
+agent 65 51
+edge 93 14 65 51
+agent 84 71
+edge 65 51 84 71
+agent 26 72
+edge 84 71 26 72
+agent 60 67
+edge 26 72 60 67
+agent 63 14
+edge 60 67 63 14
+agent 30 28
+edge 63 14 30 28
+agent 30 57
+edge 30 28 30 57
+agent 72 65
+edge 30 57 72 65
+agent 13 75
+edge 72 65 13 75
+agent 78 0
+edge 13 75 78 0
+agent 68 73
+edge 78 0 68 73
+agent 47 87
+edge 68 73 47 87
+agent 73 36
+edge 47 87 73 36
+agent 84 64
+edge 73 36 84 64
+agent 90 22
+edge 84 64 90 22
+agent 88 15
+edge 90 22 88 15
+agent 8 54
+edge 88 15 8 54
+agent 79 48
+edge 8 54 79 48
+agent 26 17
+edge 79 48 26 17
+agent 79 3
+edge 26 17 79 3
+agent 56 47
+edge 79 3 56 47
+agent 56 45
+edge 56 47 56 45
+agent 62 6
+edge 56 45 62 6
+agent 91 24
+edge 62 6 91 24
+agent 81 74
+edge 91 24 81 74
+agent 96 6
+edge 81 74 96 6
+agent 96 46
+edge 96 6 96 46
+agent 10 55
+edge 96 46 10 55
+agent 21 46
+edge 10 55 21 46
+agent 54 41
+edge 21 46 54 41
+agent 99 38
+edge 54 41 99 38
+agent 17 57
+edge 99 38 17 57
+agent 31 32
+edge 17 57 31 32
+agent 71 57
+edge 31 32 71 57
+agent 15 23
+edge 71 57 15 23
+agent 23 20
+edge 15 23 23 20
+agent 39 0
+edge 23 20 39 0
+agent 39 66
+edge 39 0 39 66
+agent 68 54
+edge 39 66 68 54
+agent 94 42
+edge 68 54 94 42
+agent 84 25
+edge 94 42 84 25
+agent 3 82
+edge 84 25 3 82
+agent 87 14
+edge 3 82 87 14
+agent 10 46
+edge 87 14 10 46
+agent 20 51
+edge 10 46 20 51
+agent 25 28
+edge 20 51 25 28
+agent 27 62
+edge 25 28 27 62
+agent 3 92
+edge 27 62 3 92
+agent 87 85
+edge 3 92 87 85
+agent 24 92
+edge 87 85 24 92
+agent 89 82
+edge 24 92 89 82
+agent 10 27
+edge 89 82 10 27
+agent 95 37
+edge 10 27 95 37
+agent 38 32
+edge 95 37 38 32
+agent 75 3
+edge 38 32 75 3
+agent 64 34
+edge 75 3 64 34
+agent 17 8
+edge 64 34 17 8
+agent 24 10
+edge 17 8 24 10
+agent 92 18
+edge 24 10 92 18
+agent 93 49
+edge 92 18 93 49
+agent 98 77
+edge 93 49 98 77
+agent 88 57
+edge 98 77 88 57
+agent 7 87
+edge 88 57 7 87
+agent 42 23
+edge 7 87 42 23
+agent 71 81
+edge 42 23 71 81
+agent 75 46
+edge 71 81 75 46
+agent 47 67
+edge 75 46 47 67
+agent 39 83
+edge 47 67 39 83
+agent 53 53
+edge 39 83 53 53
+agent 19 93
+edge 53 53 19 93
+agent 25 79
+edge 19 93 25 79
+agent 97 32
+edge 25 79 97 32
+agent 44 13
+edge 97 32 44 13
+agent 82 87
+edge 44 13 82 87
+agent 25 80
+edge 82 87 25 80
+agent 84 87
+edge 25 80 84 87
+agent 43 60
+edge 84 87 43 60
+agent 24 87
+edge 43 60 24 87
+agent 50 11
+edge 24 87 50 11
+agent 18 26
+edge 50 11 18 26
+agent 90 87
+edge 18 26 90 87
+agent 72 4
+edge 90 87 72 4
+agent 26 12
+edge 72 4 26 12
+agent 86 64
+edge 26 12 86 64
+agent 3 29
+edge 86 64 3 29
+agent 59 90
+edge 3 29 59 90
+agent 0 45
+edge 59 90 0 45
+agent 89 17
+edge 0 45 89 17
+agent 38 78
+edge 89 17 38 78
+agent 86 82
+edge 38 78 86 82
+agent 20 6
+edge 86 82 20 6
+agent 11 29
+edge 20 6 11 29
+agent 16 38
+edge 11 29 16 38
+agent 28 36
+edge 16 38 28 36
+agent 38 40
+edge 28 36 38 40
+agent 27 93
+edge 38 40 27 93
+agent 35 4
+edge 27 93 35 4
+agent 14 88
+edge 35 4 14 88
+agent 98 35
+edge 14 88 98 35
+edge 98 35 50 11
+agent 59 13
+edge 50 11 59 13
+agent 93 87
+edge 59 13 93 87
+agent 49 13
+edge 93 87 49 13
+agent 52 69
+edge 49 13 52 69
+agent 30 3
+edge 52 69 30 3
+agent 71 45
+edge 30 3 71 45
+agent 58 11
+edge 71 45 58 11
+agent 7 38
+edge 58 11 7 38
+agent 76 29
+edge 7 38 76 29
+agent 97 70
+edge 76 29 97 70
+agent 33 29
+edge 97 70 33 29
+agent 37 66
+edge 33 29 37 66
+agent 67 27
+edge 37 66 67 27
+agent 2 27
+edge 67 27 2 27
+agent 87 27
+edge 2 27 87 27
+agent 73 96
+edge 87 27 73 96
+agent 64 92
+edge 73 96 64 92
+agent 97 36
+edge 64 92 97 36
+agent 11 4
+edge 97 36 11 4
+agent 98 79
+edge 11 4 98 79
+agent 56 58
+edge 98 79 56 58
+agent 39 17
+edge 56 58 39 17
+agent 47 23
+edge 39 17 47 23
+agent 82 19
+edge 47 23 82 19
+agent 16 1
+edge 82 19 16 1
+agent 54 2
+edge 16 1 54 2
+agent 60 98
+edge 54 2 60 98
+agent 44 62
+edge 60 98 44 62
+agent 80 45
+edge 44 62 80 45
+agent 7 77
+edge 80 45 7 77
+agent 97 16
+edge 7 77 97 16
+agent 18 37
+edge 97 16 18 37
+agent 47 99
+edge 18 37 47 99
+agent 72 93
+edge 47 99 72 93
+agent 24 48
+edge 72 93 24 48
+agent 43 71
+edge 24 48 43 71
+agent 20 21
+edge 43 71 20 21
+agent 30 53
+edge 20 21 30 53
+agent 54 66
+edge 30 53 54 66
+agent 85 90
+edge 54 66 85 90
+agent 54 3
+edge 85 90 54 3
+agent 12 41
+edge 54 3 12 41
+agent 39 47
+edge 12 41 39 47
+agent 48 7
+edge 39 47 48 7
+agent 69 50
+edge 48 7 69 50
+agent 89 18
+edge 69 50 89 18
+agent 27 42
+edge 89 18 27 42
+agent 17 20
+edge 27 42 17 20
+agent 23 81
+edge 17 20 23 81
+agent 14 29
+edge 23 81 14 29
+agent 62 35
+edge 14 29 62 35
+agent 27 77
+edge 62 35 27 77
+agent 51 12
+edge 27 77 51 12
+agent 25 19
+edge 51 12 25 19
+agent 48 72
+edge 25 19 48 72
+agent 77 78
+edge 48 72 77 78
+agent 44 7
+edge 77 78 44 7
+agent 91 61
+edge 44 7 91 61
+agent 42 36
+edge 91 61 42 36
+agent 13 68
+edge 42 36 13 68
+agent 71 13
+edge 13 68 71 13
+agent 42 57
+edge 71 13 42 57
+agent 38 90
+edge 42 57 38 90
+agent 30 17
+edge 38 90 30 17
+agent 0 68
+edge 30 17 0 68
+agent 82 94
+edge 0 68 82 94
+agent 2 68
+edge 82 94 2 68
+agent 74 90
+edge 2 68 74 90
+edge 74 90 60 52
+agent 59 22
+edge 60 52 59 22
+agent 54 62
+edge 59 22 54 62
+agent 92 9
+edge 54 62 92 9
+agent 33 81
+edge 92 9 33 81
+agent 50 59
+edge 33 81 50 59
+agent 96 61
+edge 50 59 96 61
+agent 23 62
+edge 96 61 23 62
+agent 68 71
+edge 23 62 68 71
+agent 79 96
+edge 68 71 79 96
+agent 50 2
+edge 79 96 50 2
+agent 21 75
+edge 50 2 21 75
+agent 10 5
+edge 21 75 10 5
+agent 1 50
+edge 10 5 1 50
+agent 48 43
+edge 1 50 48 43
+agent 84 54
+edge 48 43 84 54
+agent 59 81
+edge 84 54 59 81
+agent 25 58
+edge 59 81 25 58
+agent 93 18
+edge 25 58 93 18
+agent 24 95
+edge 93 18 24 95
+agent 34 24
+edge 24 95 34 24
+agent 17 91
+edge 34 24 17 91
+agent 70 59
+edge 17 91 70 59
+agent 94 52
+edge 70 59 94 52
+agent 58 40
+edge 94 52 58 40
+agent 7 6
+edge 58 40 7 6
+agent 47 88
+edge 7 6 47 88
+agent 42 34
+edge 47 88 42 34
+agent 70 39
+edge 42 34 70 39
+agent 66 35
+edge 70 39 66 35
+agent 95 56
+edge 66 35 95 56
+agent 93 36
+edge 95 56 93 36
+agent 29 75
+edge 93 36 29 75
+agent 23 46
+edge 29 75 23 46
+agent 64 70
+edge 23 46 64 70
+agent 31 8
+edge 64 70 31 8
+agent 14 57
+edge 31 8 14 57
+agent 25 97
+edge 14 57 25 97
+agent 60 57
+edge 25 97 60 57
+agent 58 91
+edge 60 57 58 91
+agent 40 44
+edge 58 91 40 44
+agent 79 82
+edge 40 44 79 82
+agent 9 19
+edge 79 82 9 19
+agent 89 83
+edge 9 19 89 83
+agent 63 8
+edge 89 83 63 8
+agent 30 35
+edge 63 8 30 35
+agent 25 67
+edge 30 35 25 67
+agent 65 88
+edge 25 67 65 88
+agent 93 41
+edge 65 88 93 41
+agent 24 32
+edge 93 41 24 32
+agent 45 65
+edge 24 32 45 65
+agent 31 41
+edge 45 65 31 41
+agent 81 15
+edge 31 41 81 15
+agent 58 45
+edge 81 15 58 45
+edge 58 45 86 82
+edge 86 82 91 65
+agent 19 86
+edge 91 65 19 86
+agent 38 49
+edge 19 86 38 49
+agent 15 15
+edge 38 49 15 15
+agent 70 73
+edge 15 15 70 73
+agent 73 77
+edge 70 73 73 77
+agent 88 79
+edge 73 77 88 79
+agent 48 9
+edge 88 79 48 9
+agent 76 42
+edge 48 9 76 42
+agent 87 72
+edge 76 42 87 72
+agent 13 14
+edge 87 72 13 14
+agent 26 19
+edge 13 14 26 19
+agent 6 81
+edge 26 19 6 81
+agent 87 15
+edge 6 81 87 15
+agent 83 26
+edge 87 15 83 26
+agent 11 32
+edge 83 26 11 32
+agent 45 41
+edge 11 32 45 41
+agent 14 70
+edge 45 41 14 70
+agent 2 28
+edge 14 70 2 28
+agent 10 68
+edge 2 28 10 68
+agent 77 97
+edge 10 68 77 97
+agent 76 57
+edge 77 97 76 57
+agent 61 68
+edge 76 57 61 68
+agent 57 80
+edge 61 68 57 80
+agent 7 43
+edge 57 80 7 43
+agent 43 51
+edge 7 43 43 51
+agent 41 5
+edge 43 51 41 5
+agent 85 92
+edge 41 5 85 92
+agent 6 37
+edge 85 92 6 37
+agent 41 29
+edge 6 37 41 29
+agent 72 10
+edge 41 29 72 10
+agent 69 59
+edge 72 10 69 59
+agent 69 93
+edge 69 59 69 93
+agent 49 30
+edge 69 93 49 30
+agent 67 73
+edge 49 30 67 73
+agent 86 71
+edge 67 73 86 71
+agent 94 50
+edge 86 71 94 50
+agent 25 46
+edge 94 50 25 46
+agent 9 40
+edge 25 46 9 40
+agent 27 10
+edge 9 40 27 10
+agent 20 63
+edge 27 10 20 63
+agent 22 40
+edge 20 63 22 40
+agent 32 61
+edge 22 40 32 61
+agent 78 81
+edge 32 61 78 81
+agent 6 52
+edge 78 81 6 52
+agent 82 49
+edge 6 52 82 49
+agent 35 7
+edge 82 49 35 7
+agent 94 49
+edge 35 7 94 49
+agent 37 53
+edge 94 49 37 53
+agent 8 40
+edge 37 53 8 40
+agent 82 81
+edge 8 40 82 81
+agent 47 58
+edge 82 81 47 58
+agent 49 64
+edge 47 58 49 64
+agent 63 1
+edge 49 64 63 1
+agent 35 52
+edge 63 1 35 52
+agent 60 42
+edge 35 52 60 42
+agent 36 1
+edge 60 42 36 1
+agent 39 45
+edge 36 1 39 45
+agent 72 94
+edge 39 45 72 94
+agent 83 12
+edge 72 94 83 12
+agent 57 75
+edge 83 12 57 75
+agent 50 86
+edge 57 75 50 86
+agent 53 39
+edge 50 86 53 39
+agent 91 31
+edge 53 39 91 31
+agent 42 89
+edge 91 31 42 89
+agent 32 48
+edge 42 89 32 48
+agent 54 32
+edge 32 48 54 32
+agent 72 11
+edge 54 32 72 11
+agent 38 0
+edge 72 11 38 0
+agent 18 5
+edge 38 0 18 5
+agent 59 23
+edge 18 5 59 23
+agent 42 76
+edge 59 23 42 76
+agent 55 73
+edge 42 76 55 73
+agent 14 34
+edge 55 73 14 34
+agent 54 4
+edge 14 34 54 4
+agent 94 39
+edge 54 4 94 39
+agent 9 89
+edge 94 39 9 89
+agent 89 33
+edge 9 89 89 33
+agent 29 56
+edge 89 33 29 56
+agent 79 22
+edge 29 56 79 22
+agent 93 34
+edge 79 22 93 34
+agent 67 80
+edge 93 34 67 80
+agent 56 38
+edge 67 80 56 38
+agent 78 93
+edge 56 38 78 93
+agent 18 57
+edge 78 93 18 57
+agent 15 88
+edge 18 57 15 88
+agent 94 71
+edge 15 88 94 71
+agent 26 16
+edge 94 71 26 16
+agent 82 84
+edge 26 16 82 84
+agent 60 44
+edge 82 84 60 44
+agent 37 35
+edge 60 44 37 35
+agent 40 37
+edge 37 35 40 37
+agent 49 70
+edge 40 37 49 70
+agent 36 89
+edge 49 70 36 89
+agent 12 35
+edge 36 89 12 35
+agent 40 49
+edge 12 35 40 49
+agent 12 28
+edge 40 49 12 28
+agent 4 30
+edge 12 28 4 30
+agent 60 11
+edge 4 30 60 11
+agent 57 32
+edge 60 11 57 32
+agent 47 44
+edge 57 32 47 44
+edge 47 44 45 55
+agent 0 35
+edge 45 55 0 35
+agent 4 47
+edge 0 35 4 47
+agent 71 85
+edge 4 47 71 85
+agent 72 47
+edge 71 85 72 47
+agent 22 23
+edge 72 47 22 23
+agent 33 2
+edge 22 23 33 2
+agent 40 15
+edge 33 2 40 15
+agent 86 63
+edge 40 15 86 63
+agent 73 56
+edge 86 63 73 56
+agent 40 16
+edge 73 56 40 16
+agent 20 33
+edge 40 16 20 33
+agent 84 6
+edge 20 33 84 6
+agent 1 86
+edge 84 6 1 86
+agent 85 76
+edge 1 86 85 76
+agent 18 52
+edge 85 76 18 52
+agent 36 33
+edge 18 52 36 33
+agent 52 90
+edge 36 33 52 90
+agent 36 67
+edge 52 90 36 67
+agent 8 12
+edge 36 67 8 12
+agent 30 86
+edge 8 12 30 86
+agent 56 92
+edge 30 86 56 92
+agent 45 54
+edge 56 92 45 54
+agent 12 59
+edge 45 54 12 59
+edge 12 59 7 43
+agent 89 59
+edge 7 43 89 59
+agent 44 87
+edge 89 59 44 87
+agent 78 67
+edge 44 87 78 67
+agent 93 74
+edge 78 67 93 74
+agent 95 21
+edge 93 74 95 21
+agent 50 61
+edge 95 21 50 61
+agent 27 57
+edge 50 61 27 57
+agent 72 95
+edge 27 57 72 95
+agent 74 86
+edge 72 95 74 86
+agent 65 62
+edge 74 86 65 62
+agent 91 70
+edge 65 62 91 70
+agent 54 27
+edge 91 70 54 27
+agent 21 9
+edge 54 27 21 9
+agent 35 46
+edge 21 9 35 46
+agent 44 3
+edge 35 46 44 3
+agent 76 64
+edge 44 3 76 64
+agent 19 92
+edge 76 64 19 92
+agent 32 82
+edge 19 92 32 82
+agent 48 82
+edge 32 82 48 82
+agent 42 0
+edge 48 82 42 0
+agent 24 83
+edge 42 0 24 83
+agent 83 99
+edge 24 83 83 99
+agent 23 84
+edge 83 99 23 84
+agent 94 25
+edge 23 84 94 25
+agent 47 37
+edge 94 25 47 37
+agent 8 39
+edge 47 37 8 39
+edge 8 39 1 46
+agent 57 11
+edge 1 46 57 11
+agent 21 40
+edge 57 11 21 40
+agent 29 16
+edge 21 40 29 16
+agent 24 14
+edge 29 16 24 14
+agent 52 84
+edge 24 14 52 84
+agent 9 35
+edge 52 84 9 35
+agent 67 26
+edge 9 35 67 26
+agent 52 21
+edge 67 26 52 21
+agent 27 40
+edge 52 21 27 40
+agent 73 87
+edge 27 40 73 87
+agent 97 75
+edge 73 87 97 75
+agent 64 44
+edge 97 75 64 44
+agent 65 2
+edge 64 44 65 2
+edge 65 2 27 93
+agent 9 82
+edge 27 93 9 82
+agent 31 57
+edge 9 82 31 57
+agent 94 81
+edge 31 57 94 81
+agent 25 87
+edge 94 81 25 87
+agent 61 2
+edge 25 87 61 2
+agent 24 24
+edge 61 2 24 24
+agent 91 88
+edge 24 24 91 88
+agent 67 52
+edge 91 88 67 52
+agent 99 49
+edge 67 52 99 49
+agent 92 4
+edge 99 49 92 4
+agent 17 40
+edge 92 4 17 40
+agent 88 14
+edge 17 40 88 14
+agent 40 60
+edge 88 14 40 60
+agent 48 14
+edge 40 60 48 14
+agent 69 23
+edge 48 14 69 23
+agent 77 76
+edge 69 23 77 76
+agent 44 27
+edge 77 76 44 27
+agent 32 26
+edge 44 27 32 26
+agent 89 55
+edge 32 26 89 55
+agent 92 63
+edge 89 55 92 63
+agent 59 51
+edge 92 63 59 51
+agent 60 26
+edge 59 51 60 26
+edge 60 26 89 83
+agent 34 35
+edge 89 83 34 35
+agent 58 13
+edge 34 35 58 13
+edge 58 13 38 40
+agent 31 13
+edge 38 40 31 13
+agent 85 65
+edge 31 13 85 65
+agent 24 94
+edge 85 65 24 94
+agent 37 89
+edge 24 94 37 89
+agent 75 56
+edge 37 89 75 56
+agent 86 47
+edge 75 56 86 47
+agent 12 74
+edge 86 47 12 74
+agent 47 22
+edge 12 74 47 22
+agent 42 78
+edge 47 22 42 78
+agent 79 77
+edge 42 78 79 77
+agent 61 35
+edge 79 77 61 35
+agent 84 99
+edge 61 35 84 99
+agent 63 55
+edge 84 99 63 55
+agent 70 23
+edge 63 55 70 23
+agent 77 33
+edge 70 23 77 33
+agent 0 36
+edge 77 33 0 36
+agent 53 98
+edge 0 36 53 98
+agent 31 2
+edge 53 98 31 2
+edge 31 2 20 33
+agent 28 1
+edge 20 33 28 1
+agent 26 73
+edge 28 1 26 73
+agent 33 74
+edge 26 73 33 74
+agent 99 40
+edge 33 74 99 40
+agent 2 43
+edge 99 40 2 43
+agent 46 73
+edge 2 43 46 73
+agent 50 7
+edge 46 73 50 7
+agent 61 18
+edge 50 7 61 18
+agent 36 44
+edge 61 18 36 44
+agent 8 92
+edge 36 44 8 92
+agent 30 10
+edge 8 92 30 10
+agent 19 65
+edge 30 10 19 65
+agent 36 21
+edge 19 65 36 21
+edge 36 21 7 81
+agent 27 2
+edge 7 81 27 2
+agent 73 97
+edge 27 2 73 97
+agent 54 55
+edge 73 97 54 55
+agent 86 53
+edge 54 55 86 53
+agent 71 37
+edge 86 53 71 37
+agent 11 71
+edge 71 37 11 71
+agent 67 20
+edge 11 71 67 20
+agent 60 13
+edge 67 20 60 13
+agent 24 38
+edge 60 13 24 38
+agent 32 32
+edge 24 38 32 32
+agent 96 80
+edge 32 32 96 80
+agent 52 32
+edge 96 80 52 32
+agent 14 74
+edge 52 32 14 74
+agent 70 93
+edge 14 74 70 93
+agent 96 98
+edge 70 93 96 98
+agent 90 3
+edge 96 98 90 3
+agent 60 53
+edge 90 3 60 53
+agent 31 10
+edge 60 53 31 10
+agent 17 90
+edge 31 10 17 90
+agent 91 84
+edge 17 90 91 84
+agent 3 40
+edge 91 84 3 40
+agent 97 37
+edge 3 40 97 37
+agent 92 86
+edge 97 37 92 86
+agent 37 46
+edge 92 86 37 46
+agent 5 46
+edge 37 46 5 46
+agent 38 42
+edge 5 46 38 42
+agent 88 76
+edge 38 42 88 76
+edge 88 76 36 21
+agent 51 48
+edge 36 21 51 48
+agent 40 42
+edge 51 48 40 42
+agent 38 60
+edge 40 42 38 60
+edge 38 60 77 76
+agent 51 87
+edge 77 76 51 87
+agent 54 81
+edge 51 87 54 81
+agent 91 67
+edge 54 81 91 67
+agent 38 96
+edge 91 67 38 96
+agent 86 54
+edge 38 96 86 54
+agent 84 81
+edge 86 54 84 81
+agent 20 96
+edge 84 81 20 96
+agent 47 91
+edge 20 96 47 91
+agent 58 22
+edge 47 91 58 22
+agent 71 78
+edge 58 22 71 78
+agent 76 78
+edge 71 78 76 78
+agent 79 43
+edge 76 78 79 43
+agent 5 28
+edge 79 43 5 28
+agent 86 30
+edge 5 28 86 30
+agent 45 93
+edge 86 30 45 93
+agent 0 51
+edge 45 93 0 51
+agent 44 15
+edge 0 51 44 15
+agent 82 57
+edge 44 15 82 57
+agent 75 9
+edge 82 57 75 9
+agent 10 35
+edge 75 9 10 35
+agent 44 69
+edge 10 35 44 69
+agent 34 19
+edge 44 69 34 19
+agent 94 7
+edge 34 19 94 7
+agent 16 41
+edge 94 7 16 41
+agent 39 68
+edge 16 41 39 68
+agent 27 58
+edge 39 68 27 58
+agent 88 13
+edge 27 58 88 13
+agent 41 68
+edge 88 13 41 68
+agent 75 39
+edge 41 68 75 39
+agent 84 91
+edge 75 39 84 91
+agent 53 84
+edge 84 91 53 84
+agent 72 25
+edge 53 84 72 25
+agent 13 31
+edge 72 25 13 31
+agent 74 97
+edge 13 31 74 97
+agent 64 32
+edge 74 97 64 32
+agent 83 85
+edge 64 32 83 85
+agent 3 80
+edge 83 85 3 80
+agent 49 68
+edge 3 80 49 68
+agent 32 81
+edge 49 68 32 81
+agent 55 76
+edge 32 81 55 76
+agent 27 79
+edge 55 76 27 79
+agent 97 69
+edge 27 79 97 69
+agent 60 14
+edge 97 69 60 14
+edge 60 14 90 22
+agent 10 67
+edge 90 22 10 67
+agent 33 4
+edge 10 67 33 4
+agent 29 66
+edge 33 4 29 66
+agent 0 53
+edge 29 66 0 53
+agent 33 22
+edge 0 53 33 22
+agent 67 11
+edge 33 22 67 11
+agent 92 93
+edge 67 11 92 93
+agent 90 56
+edge 92 93 90 56
+agent 46 14
+edge 90 56 46 14
+agent 66 94
+edge 46 14 66 94
+agent 65 33
+edge 66 94 65 33
+agent 45 87
+edge 65 33 45 87
+edge 45 87 91 70
+agent 22 3
+edge 91 70 22 3
+agent 52 99
+edge 22 3 52 99
+agent 47 13
+edge 52 99 47 13
+agent 17 92
+edge 47 13 17 92
+agent 47 33
+edge 17 92 47 33
+agent 79 29
+edge 47 33 79 29
+agent 96 64
+edge 79 29 96 64
+agent 2 91
+edge 96 64 2 91
+agent 9 99
+edge 2 91 9 99
+agent 81 35
+edge 9 99 81 35
+agent 54 46
+edge 81 35 54 46
+agent 35 20
+edge 54 46 35 20
+agent 17 87
+edge 35 20 17 87
+agent 45 48
+edge 17 87 45 48
+agent 89 31
+edge 45 48 89 31
+agent 74 83
+edge 89 31 74 83
+agent 86 44
+edge 74 83 86 44
+agent 60 32
+edge 86 44 60 32
+agent 67 47
+edge 60 32 67 47
+agent 80 28
+edge 67 47 80 28
+agent 84 18
+edge 80 28 84 18
+agent 82 13
+edge 84 18 82 13
+edge 82 13 64 70
+agent 32 64
+edge 64 70 32 64
+agent 48 75
+edge 32 64 48 75
+agent 9 47
+edge 48 75 9 47
+agent 71 59
+edge 9 47 71 59
+agent 86 91
+edge 71 59 86 91
+agent 77 41
+edge 86 91 77 41
+agent 40 57
+edge 77 41 40 57
+agent 99 12
+edge 40 57 99 12
+agent 9 56
+edge 99 12 9 56
+agent 80 97
+edge 9 56 80 97
+agent 81 80
+edge 80 97 81 80
+agent 50 30
+edge 81 80 50 30
+agent 41 30
+edge 50 30 41 30
+agent 69 35
+edge 41 30 69 35
+agent 62 97
+edge 69 35 62 97
+agent 1 23
+edge 62 97 1 23
+agent 12 79
+edge 1 23 12 79
+agent 51 88
+edge 12 79 51 88
+agent 91 4
+edge 51 88 91 4
+edge 91 4 77 76
+agent 92 69
+edge 77 76 92 69
+agent 19 34
+edge 92 69 19 34
+agent 21 73
+edge 19 34 21 73
+agent 47 57
+edge 21 73 47 57
+agent 43 27
+edge 47 57 43 27
+agent 18 88
+edge 43 27 18 88
+agent 73 63
+edge 18 88 73 63
+agent 52 74
+edge 73 63 52 74
+agent 70 86
+edge 52 74 70 86
+agent 93 57
+edge 70 86 93 57
+agent 43 61
+edge 93 57 43 61
+agent 10 78
+edge 43 61 10 78
+agent 94 9
+edge 10 78 94 9
+agent 48 35
+edge 94 9 48 35
+agent 67 91
+edge 48 35 67 91
+agent 69 21
+edge 67 91 69 21
+agent 25 31
+edge 69 21 25 31
+agent 63 97
+edge 25 31 63 97
+agent 10 31
+edge 63 97 10 31
+edge 10 31 66 35
+edge 66 35 65 62
+agent 58 55
+edge 65 62 58 55
+agent 81 98
+edge 58 55 81 98
+agent 54 96
+edge 81 98 54 96
+agent 99 95
+edge 54 96 99 95
+agent 18 78
+edge 99 95 18 78
+agent 89 62
+edge 18 78 89 62
+agent 79 4
+edge 89 62 79 4
+agent 45 50
+edge 79 4 45 50
+agent 17 95
+edge 45 50 17 95
+agent 21 15
+edge 17 95 21 15
+agent 22 58
+edge 21 15 22 58
+agent 88 69
+edge 22 58 88 69
+edge 88 69 33 22
+agent 98 7
+edge 33 22 98 7
+agent 50 54
+edge 98 7 50 54
+agent 10 10
+edge 50 54 10 10
+agent 33 41
+edge 10 10 33 41
+agent 1 72
+edge 33 41 1 72
+agent 99 92
+edge 1 72 99 92
+agent 69 27
+edge 99 92 69 27
+agent 38 44
+edge 69 27 38 44
+agent 68 27
+edge 38 44 68 27
+agent 85 36
+edge 68 27 85 36
+agent 10 58
+edge 85 36 10 58
+agent 75 28
+edge 10 58 75 28
+agent 92 64
+edge 75 28 92 64
+agent 4 14
+edge 92 64 4 14
+agent 14 71
+edge 4 14 14 71
+agent 57 98
+edge 14 71 57 98
+agent 25 74
+edge 57 98 25 74
+agent 78 41
+edge 25 74 78 41
+agent 91 83
+edge 78 41 91 83
+agent 35 42
+edge 91 83 35 42
+agent 54 69
+edge 35 42 54 69
+agent 24 86
+edge 54 69 24 86
+agent 11 56
+edge 24 86 11 56
+agent 26 42
+edge 11 56 26 42
+agent 12 44
+edge 26 42 12 44
+agent 98 95
+edge 12 44 98 95
+agent 68 9
+edge 98 95 68 9
+agent 5 98
+edge 68 9 5 98
+agent 30 39
+edge 5 98 30 39
+agent 91 30
+edge 30 39 91 30
+agent 50 40
+edge 91 30 50 40
+agent 26 43
+edge 50 40 26 43
+agent 15 79
+edge 26 43 15 79
+agent 3 25
+edge 15 79 3 25
+agent 8 61
+edge 3 25 8 61
+agent 59 14
+edge 8 61 59 14
+agent 50 90
+edge 59 14 50 90
+agent 19 85
+edge 50 90 19 85
+agent 58 95
+edge 19 85 58 95
+agent 66 4
+edge 58 95 66 4
+edge 66 4 1 50
+agent 72 77
+edge 1 50 72 77
+agent 83 75
+edge 72 77 83 75
+agent 37 93
+edge 83 75 37 93
+agent 26 75
+edge 37 93 26 75
+agent 20 62
+edge 26 75 20 62
+agent 36 14
+edge 20 62 36 14
+agent 42 91
+edge 36 14 42 91
+agent 32 43
+edge 42 91 32 43
+agent 83 94
+edge 32 43 83 94
+agent 16 75
+edge 83 94 16 75
+agent 94 17
+edge 16 75 94 17
+agent 75 55
+edge 94 17 75 55
+agent 82 62
+edge 75 55 82 62
+agent 85 88
+edge 82 62 85 88
+agent 58 10
+edge 85 88 58 10
+agent 31 52
+edge 58 10 31 52
+agent 27 78
+edge 31 52 27 78
+agent 77 56
+edge 27 78 77 56
+agent 97 30
+edge 77 56 97 30
+agent 44 76
+edge 97 30 44 76
+agent 46 77
+edge 44 76 46 77
+agent 22 28
+edge 46 77 22 28
+agent 23 17
+edge 22 28 23 17
+agent 92 37
+edge 23 17 92 37
+agent 45 35
+edge 92 37 45 35
+agent 35 59
+edge 45 35 35 59
+agent 40 32
+edge 35 59 40 32
+agent 7 42
+edge 40 32 7 42
+edge 7 42 49 53
+agent 73 55
+edge 49 53 73 55
+agent 49 5
+edge 73 55 49 5
+agent 70 75
+edge 49 5 70 75
+agent 65 89
+edge 70 75 65 89
+agent 47 28
+edge 65 89 47 28
+agent 86 55
+edge 47 28 86 55
+agent 92 95
+edge 86 55 92 95
+agent 46 16
+edge 92 95 46 16
+agent 85 9
+edge 46 16 85 9
+agent 5 57
+edge 85 9 5 57
+agent 91 13
+edge 5 57 91 13
+agent 5 29
+edge 91 13 5 29
+agent 70 48
+edge 5 29 70 48
+agent 53 58
+edge 70 48 53 58
+agent 55 1
+edge 53 58 55 1
+agent 50 77
+edge 55 1 50 77
+agent 74 8
+edge 50 77 74 8
+agent 56 23
+edge 74 8 56 23
+agent 86 26
+edge 56 23 86 26
+agent 48 10
+edge 86 26 48 10
+agent 28 58
+edge 48 10 28 58
+edge 28 58 76 78
+agent 22 20
+edge 76 78 22 20
+edge 22 20 70 66
+agent 92 51
+edge 70 66 92 51
+agent 10 91
+edge 92 51 10 91
+agent 38 12
+edge 10 91 38 12
+agent 44 67
+edge 38 12 44 67
+agent 61 21
+edge 44 67 61 21
+agent 33 26
+edge 61 21 33 26
+agent 72 56
+edge 33 26 72 56
+agent 27 59
+edge 72 56 27 59
+agent 71 7
+edge 27 59 71 7
+agent 67 82
+edge 71 7 67 82
+agent 75 82
+edge 67 82 75 82
+agent 88 43
+edge 75 82 88 43
+agent 61 88
+edge 88 43 61 88
+agent 62 54
+edge 61 88 62 54
+agent 38 77
+edge 62 54 38 77
+agent 32 24
+edge 38 77 32 24
+edge 32 24 80 28
+agent 76 39
+edge 80 28 76 39
+agent 19 37
+edge 76 39 19 37
+agent 85 55
+edge 19 37 85 55
+edge 85 55 51 48
+agent 27 74
+edge 51 48 27 74
+agent 57 50
+edge 27 74 57 50
+agent 63 50
+edge 57 50 63 50
+agent 9 84
+edge 63 50 9 84
+agent 90 13
+edge 9 84 90 13
+agent 57 54
+edge 90 13 57 54
+agent 51 62
+edge 57 54 51 62
+agent 41 52
+edge 51 62 41 52
+agent 5 51
+edge 41 52 5 51
+edge 5 51 64 68
+agent 63 74
+edge 64 68 63 74
+agent 64 21
+edge 63 74 64 21
+agent 85 50
+edge 64 21 85 50
+edge 85 50 87 53
+agent 24 63
+edge 87 53 24 63
+agent 92 47
+edge 24 63 92 47
+agent 73 45
+edge 92 47 73 45
+agent 69 99
+edge 73 45 69 99
+agent 94 75
+edge 69 99 94 75
+agent 19 71
+edge 94 75 19 71
+edge 19 71 32 64
+agent 64 18
+edge 32 64 64 18
+edge 64 18 43 51
+agent 6 3
+edge 43 51 6 3
+agent 61 53
+edge 6 3 61 53
+agent 88 73
+edge 61 53 88 73
+edge 88 73 44 76
+agent 62 70
+edge 44 76 62 70
+agent 50 34
+edge 62 70 50 34
+agent 62 83
+edge 50 34 62 83
+agent 69 7
+edge 62 83 69 7
+agent 1 27
+edge 69 7 1 27
+agent 33 68
+edge 1 27 33 68
+agent 26 52
+edge 33 68 26 52
+agent 29 46
+edge 26 52 29 46
+agent 97 87
+edge 29 46 97 87
+agent 83 23
+edge 97 87 83 23
+agent 49 87
+edge 83 23 49 87
+agent 31 20
+edge 49 87 31 20
+agent 0 18
+edge 31 20 0 18
+agent 78 16
+edge 0 18 78 16
+agent 62 11
+edge 78 16 62 11
+agent 94 97
+edge 62 11 94 97
+agent 22 79
+edge 94 97 22 79
+edge 22 79 38 49
+agent 4 63
+edge 38 49 4 63
+agent 21 64
+edge 4 63 21 64
+agent 70 92
+edge 21 64 70 92
+agent 35 25
+edge 70 92 35 25
+edge 35 25 82 84
+agent 31 47
+edge 82 84 31 47
+edge 31 47 48 82
+agent 1 70
+edge 48 82 1 70
+agent 98 68
+edge 1 70 98 68
+agent 15 51
+edge 98 68 15 51
+agent 48 23
+edge 15 51 48 23
+agent 4 97
+edge 48 23 4 97
+agent 58 90
+edge 4 97 58 90
+agent 61 58
+edge 58 90 61 58
+agent 89 20
+edge 61 58 89 20
+agent 56 66
+edge 89 20 56 66
+agent 10 22
+edge 56 66 10 22
+agent 23 30
+edge 10 22 23 30
+agent 58 94
+edge 23 30 58 94
+agent 77 22
+edge 58 94 77 22
+agent 79 92
+edge 77 22 79 92
+agent 92 73
+edge 79 92 92 73
+agent 72 82
+edge 92 73 72 82
+agent 79 74
+edge 72 82 79 74
+agent 56 37
+edge 79 74 56 37
+agent 44 5
+edge 56 37 44 5
+edge 44 5 25 99
+agent 66 38
+edge 25 99 66 38
+edge 66 38 69 27
+edge 69 27 1 86
+agent 66 73
+edge 1 86 66 73
+agent 19 1
+edge 66 73 19 1
+agent 82 51
+edge 19 1 82 51
+agent 99 65
+edge 82 51 99 65
+agent 10 33
+edge 99 65 10 33
+agent 77 73
+edge 10 33 77 73

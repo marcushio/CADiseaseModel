@@ -30,7 +30,7 @@ public class MapDisplay {
     private int X_FRONTIER = 1000;
     private int Y_FRONTIER = 1000;
     private int NODE_RADIUS = 8;
-    private double SCALE_FACTOR = NODE_RADIUS *2;
+    private double SCALE_FACTOR = NODE_RADIUS *1.9;
     private Pane modelDisplay = new Pane();
     private ScrollPane modelScroll = new ScrollPane(modelDisplay);
     private MapPopulation population;
@@ -56,10 +56,11 @@ public class MapDisplay {
     }
 
     private void makeNodes(){
+        Map<Coordinate, MapAgent> coordinateAgentMap = population.getCoordinateAgentMap();
+        Set<Coordinate> coordinates = coordinateAgentMap.keySet();
         int i = 0; int j = 0;
-        //for(Coordinate coordinate : coordinates){
-        for(MapAgent agent : population.getPopulation() ){
-            //Node ithNode = coordinateNodeMap.get(coordinate);
+        for(Coordinate coordinate : coordinates){
+            MapAgent agent = coordinateAgentMap.get(coordinate);
             Circle newCircle = new Circle(agent.getX()*SCALE_FACTOR,agent.getY()*SCALE_FACTOR, NODE_RADIUS, Paint.valueOf("blue"));
             newCircle.setStrokeWidth(NODE_RADIUS/2);
             newCircle.fillProperty().bind(agent.getColor());

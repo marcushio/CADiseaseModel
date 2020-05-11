@@ -10,16 +10,15 @@ import java.util.List;
  * @version 5/1/20
  */
 public class MapAgent {
-    private List<MapAgent> neighbors;
-    private int x, y;
+    private List<MapAgent> neighbors = new ArrayList<>();
+    private Coordinate coordinate;
     private State state;
     private ObjectProperty<Color> color = new ColorPicker(Color.GREEN).valueProperty() ;
 
-    public MapAgent(State state, int x, int y){
-        neighbors = new ArrayList<MapAgent>();
-        this.x = x;
-        this.y = y;
+    public MapAgent(){ this.state = State.SUSCEPTIBLE; }
+    public MapAgent(State state, Coordinate coord){
         this.state = state;
+        this.coordinate = coord;
     }
 
     /**
@@ -65,13 +64,13 @@ public class MapAgent {
      *
      * @return this agent's x coordinate
      */
-    public int getX(){ return x; }
+    public int getX(){ return coordinate.getX(); }
 
     /**
      *
      * @return this agent's y coordinate
      */
-    public int getY(){ return y; }
+    public int getY(){ return coordinate.getY(); }
 
     /**
      *
@@ -85,9 +84,18 @@ public class MapAgent {
     public ObjectProperty<Color> getColor() { return color; }
 
     /**
-     *
+     * @return the list of neighbors for this agent
      */
     public List<MapAgent> getNeighbors(){ return neighbors; }
+
+    /**
+     * @return this agents coordinates
+     */
+    public Coordinate getCoordinate(){ return coordinate; }
+
+    public void setCoordinate(Coordinate coord){
+        this.coordinate = coord;
+    }
 
 
 
