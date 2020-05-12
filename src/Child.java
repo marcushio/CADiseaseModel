@@ -9,11 +9,13 @@ public class Child extends Agent {
         this.hospStdev = 3.0;
         this.hospMean = 7.0;
 
-        this.asymptomaticRate = 0.9;
-        this.hospitalizationRate = 0.01;
-        this.asymptomaticMortalityRate = 0.0001;
-        this.infectedMortalityRate = 0.0001;
-        this.hospitalMortalityRate = 0.02;
+        this.asymptomaticRate = 0.90; //high asymptomatic rate
+//        this.asymptomaticRate = 0.10; //low asymptomatic rate
+        this.hospitalizationRate = 0.02;
+        this.asymptomaticMortalityRate = 0.0;
+        this.infectedMortalityRate = 0.0;
+        this.hospitalMortalityRate = 0.0;
+
     }
 
 }

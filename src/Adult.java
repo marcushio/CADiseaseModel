@@ -8,10 +8,11 @@ public class Adult extends Agent{
         this.hospStdev = 1.0;
         this.hospMean = 4.0;
 
-        this.asymptomaticRate = 0.4;
-        this.hospitalizationRate = 0.05;
+        this.asymptomaticRate = 0.60; //high asymptomatic rate
+//        this.asymptomaticRate = 0.05; //low asymptomatic rate
+        this.hospitalizationRate = 0.25;
         this.asymptomaticMortalityRate = 0.0001;
-        this.infectedMortalityRate = 0.001;
-        this.hospitalMortalityRate = 0.10;
+        this.infectedMortalityRate = 0.002;
+        this.hospitalMortalityRate = 0.015;
     }
 }
