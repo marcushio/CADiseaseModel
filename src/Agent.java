@@ -21,7 +21,7 @@ public class Agent {
     private List<State> history;
     private int xPosition;
     private int yPosition;
-
+    private Coordinate coordinate;
     //alternate values for progression
     private Random r;
 
@@ -56,11 +56,12 @@ public class Agent {
     }
 
     public Agent(State state, int xPosition, int yPosition){
-        neighborhood = null;
+        neighborhood = new ArrayList<Agent>();
         history = new ArrayList<>();
         this.setState(state);
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+        this.coordinate = new Coordinate(xPosition, yPosition);
         r = new Random();
     }
 
@@ -81,18 +82,30 @@ public class Agent {
             color.set(Color.ORANGE);
         }
     }
+    public void setCoordinate(Coordinate newCoord){
+        this.coordinate = newCoord;
+    }
 
     public State getState(){
         return state;
     }
 
+    /**
+     * adds a node to this node's list of neighbors if it's not already there
+     * @param neighbor
+     * @return true if a node was added, else false
+     */
+    public boolean addNeighbor(Agent neighbor){
+        if(neighborhood.contains(neighbor)){ return false; }
+        neighborhood.add(neighbor);
+        return true;
+    }
 
-
-    public int getxPosition(){
+    public int getX(){
         return xPosition;
     }
 
-    public int getyPosition(){
+    public int getY(){
         return yPosition;
     }
 

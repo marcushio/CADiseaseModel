@@ -1,115 +1,97 @@
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.transform.Translate;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
- *  @author Marcus Trujillo
- *  @version 4/2/2020
- *
- * This class is responsible for displaying everything
+ * @author Marcus Trujillo
+ * @version 5/2/20
  */
 
 public class Display {
-    private Stage primaryStage;
-    private VBox root;
-    private HBox metrics;
-    private GridPane populationGraphic;
+    private int X_FRONTIER = 1000;
+    private int Y_FRONTIER = 1000;
+    private int NODE_RADIUS = 6;
+    private double SCALE_FACTOR = NODE_RADIUS *2;
+    private Pane modelDisplay = new Pane();
+    private ScrollPane modelScroll = new ScrollPane(modelDisplay);
     private Population population;
-    //settings used for 20x20
-    // private int cellHeight = 40, cellWidth = 40;
-    // private int popHeight = 20, popWidth = 20;
-    private int cellHeight = 20, cellWidth = 20;
-    private int popHeight = 40, popWidth = 40;
-    private int windowHeight = 830, windowWidth = 810;
-
-    public Display(Stage primaryStage, Population population){
-        this.primaryStage = primaryStage;
-        this.population = population;
-        this.popHeight = population.getHeight();
-        this.popWidth = population.getWidth();
-        cellHeight = windowHeight / popHeight > 2 ? windowHeight / popHeight : 2 ;
-        cellWidth = windowWidth / popWidth > 2 ? windowWidth / popWidth : 2 ;
-        root = new VBox();
-        metrics = new HBox();
-        //populationGraphic = new Canvas(800, 800);
-        makeGrid();
-        //root.getChildren().add(metrics);
-        root.getChildren().add(populationGraphic);
-        primaryStage.setTitle("Covid-19 modeling");
-        primaryStage.setScene(new Scene(root, windowWidth, windowHeight));
-        primaryStage.show();
-    }
-
-    private void makeGrid(){
-        this.populationGraphic = new GridPane();
-        for(int x = 0; x < popWidth; x++){
-            for(int y = 0; y < popHeight; y++ ){
-                Agent thisAgent = population.getAgent(x,y);
-                Rectangle newRectangle = new Rectangle(0, 0, cellWidth, cellHeight) ;
-                newRectangle.fillProperty().bind(thisAgent.getColor());
-                newRectangle.setStroke(Color.BLACK);
-                this.populationGraphic.add(newRectangle, y, x ); //oddly gridpanes add params are (object, colIndex, rowIndex)
-            }
-        }
-    }
-
-
-
+    private List<Circle> nodeViews = new ArrayList<>();
+    private Group networkShapes = new Group();
     /**
-     * Update the display showing the new states of cells and new metrics numbers
-     * @param population represented by 2d array of Agent
-
-    //Will this be obsolete with the use of bindings?? Pretty surrrre it will be
-    public void update(Population population){
-        Agent[][] population = population.getPopulation();
-        //first update the board
-        for(int x = 0; x < popWidth; x++){
-            for(int y = 0; y < popHeight; y++){
-                State virus1State = population[x][y].getState();
-                //State virus2State = population[x][y].getNovelState();
-
-                if (virus1State == State.INFECTED && virus2State == State.NOVEL_I){//check for dual states before single states
-                    gc.setFill(Color.ORANGE);
-                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.setFill(Color.RED);
-                    gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                } else if (virus2State == State.NOVEL_I ){
-                    gc.setFill(Color.ORANGE);
-                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                } else if (population[x][y].getState() == State.SUSCEPTIBLE && virus2State == State.NOVEL_S){
-                    gc.setFill(Color.GREEN);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                    gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                } else if (population[x][y].getState() == State.INFECTED){
-                    gc.setFill(Color.RED);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                    gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                } else if (virus1State == State.RECOVERED && virus2State == State.NOVEL_R){ //check for dual states before single states
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
-                    //gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.setFill(Color.BLUE);
-                    gc.fillRect(x * cellWidth + cellWidth/2, y* cellHeight, cellWidth/2, cellHeight );
-                    gc.strokeRect(x * cellWidth, y* cellHeight, cellWidth, cellHeight );
-                } else if (population[x][y].getState() == State.RECOVERED){
-                    gc.setFill(Color.BLUE);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                    gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                } else if (virus2State == State.NOVEL_R){
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                    gc.strokeRect(x * cellWidth,y * cellHeight, cellWidth, cellHeight);
-                }
-            }
-        }
-        //then update the metrics display
-    }
+     * Constructor
+     * @param primaryStage
      */
+    public Display(Stage primaryStage, Population population){
+        this.population = population;
+        Scene scene = new Scene(makeRoot(),primaryStage.getMaxWidth(), primaryStage.getMaxWidth());
+        primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.show();
+        makeNodes();
+    }
+
+    private BorderPane makeRoot(){
+        BorderPane root = new BorderPane();
+        root.setCenter(modelScroll);
+        return root;
+    }
+
+    private void makeNodes(){
+        Map<Coordinate, Agent> coordinateAgentMap = population.getCoordinateAgentMap();
+        Set<Coordinate> coordinates = coordinateAgentMap.keySet();
+        int i = 0; int j = 0;
+        for(Coordinate coordinate : coordinates){
+            Agent agent = coordinateAgentMap.get(coordinate);
+            Circle newCircle = new Circle(agent.getX()*SCALE_FACTOR,agent.getY()*SCALE_FACTOR, NODE_RADIUS, Paint.valueOf("blue"));
+            newCircle.setStrokeWidth(NODE_RADIUS/2);
+            newCircle.fillProperty().bind(agent.getColor());
+            nodeViews.add(newCircle);
+            networkShapes.getChildren().add(newCircle);
+            addOutgoingLines(agent);
+        }
+
+        Translate translate = new Translate();
+        translate.setY(NODE_RADIUS*4+ networkShapes.getTranslateY());
+        translate.setX(NODE_RADIUS*4+ networkShapes.getTranslateX());
+        networkShapes.getTransforms().add(translate);
+        modelDisplay.getChildren().add(networkShapes);
+
+    }
+
+    private double scaleLineCoordinate(double coordinate){
+        return (coordinate * SCALE_FACTOR);
+    }
+
+    private void addOutgoingLines(Agent node) {
+        for(Agent neighbor : node.getNeighborhood()){
+            //Coordinate neighborCoordinate = neighbor.getCoordinate();
+            int neighborX = neighbor.getX(); int neighborY = neighbor.getY();
+            networkShapes.getChildren().add(new Line(
+                    scaleLineCoordinate(node.getX()),
+                    scaleLineCoordinate(node.getY()),
+                    scaleLineCoordinate(neighborX),
+                    scaleLineCoordinate(neighborY))
+            );
+        }
+    }
+
 }

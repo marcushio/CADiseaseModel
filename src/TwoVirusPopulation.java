@@ -18,7 +18,7 @@ public class TwoVirusPopulation extends Population{
 
     @Override
     protected void setPatientZero() {
-        population[20][20].setState(State.INFECTED);
+
 //        population[10][10].setState(State.NOVEL_I);
     }
 

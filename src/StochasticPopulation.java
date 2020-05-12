@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Marcus Trujillo
@@ -9,18 +10,16 @@ import java.util.List;
  */
 
 public class StochasticPopulation extends Population {
-//    private double probStoI_1 = .25, probStoI_2 = .3, probStoI_3 = .33, probStoI_4 = .4, probStoI_5 = .55,
-//            probStoI_6 = .6, probStoI_7 = .69, probStoI_8 = .75;
-
     private double[] probStoI = {0.0, 0.5 , 0.36, 0.7, 0.8, 0.55, 0.59, 0.7, 0.60};
 
-    public StochasticPopulation() {
-        this(200, 200);
-    }
-    public StochasticPopulation(int height, int width) {
-        super(height, width);
-        setPatientZero();
-    }
+    public StochasticPopulation(){ }
+//old    public StochasticPopulation() {
+//        this(200, 200);
+//    }
+//    public StochasticPopulation(int height, int width) {
+//        super(height, width);
+//        setPatientZero();
+//    }
 
 
     /**
@@ -40,21 +39,17 @@ public class StochasticPopulation extends Population {
         int currInfected = 0, susceptible = 0, recovered = 0,CARRIER = 0, HOSPITALIZED = 0, DEAD = 0;
 
         //walk through the population, updating current states, progressing the virus
-        for(int i = 0; i < super.getWidth(); i++){
-            for(int j = 0; j < super.getHeight(); j++){
-                population[i][j].incrementTime();
-            }
+        for(Agent agent : population) {
+            agent.incrementTime();
         }
 
         //walk through the population, infecting those exposed to the virus, counting the numbers of each state
-        for(int i = 0; i < super.getWidth(); i++){
-            for(int j = 0; j < super.getHeight(); j++){
-                State curState = population[i][j].getState();
-
+        for(Agent agent : population){
+                State curState = agent.getState();
                 if(curState == State.SUSCEPTIBLE){
                     //if susceptible, check if getting exposed and infected
-                    if(Math.random() < probStoI[countSickNeighbors(i, j)]){
-                        population[i][j].infect();
+                    if(Math.random() < probStoI[countSickNeighbors(agent.getX(),agent.getY())]){
+                        agent.infect();
                     } else {
                         //if not exposed, still count as susceptible
                         susceptible++;
@@ -66,7 +61,7 @@ public class StochasticPopulation extends Population {
                 if(curState == State.HOSPITALIZED){ HOSPITALIZED++; }
                 if(curState == State.RECOVERED){ recovered++; }
                 if(curState == State.DEAD){ DEAD++; }
-            }
+
         }
 
         System.out.println(susceptible + "," + recovered  + "," + CARRIER + "," + currInfected + "," + HOSPITALIZED + "," + DEAD);
@@ -77,7 +72,12 @@ public class StochasticPopulation extends Population {
             return false;
     }
 
-    public Agent[][] getPopulation(){
+    public ArrayList<Agent> getPopulation(){
         return this.population;
+    }
+
+    @Override
+    public Map<Coordinate, Agent> getCoordinateAgentMap() {
+        return super.getCoordinateAgentMap();
     }
 }
