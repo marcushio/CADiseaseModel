@@ -29,8 +29,8 @@ import java.util.Set;
 public class MapDisplay {
     private int X_FRONTIER = 1000;
     private int Y_FRONTIER = 1000;
-    private int NODE_RADIUS = 8;
-    private double SCALE_FACTOR = NODE_RADIUS *1.9;
+    private int NODE_RADIUS = 6;
+    private double SCALE_FACTOR = NODE_RADIUS *2;
     private Pane modelDisplay = new Pane();
     private ScrollPane modelScroll = new ScrollPane(modelDisplay);
     private MapPopulation population;
