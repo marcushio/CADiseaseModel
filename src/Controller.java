@@ -37,7 +37,7 @@ public class Controller extends TimerTask {
         if(running) {
             running = population.update();
             if(!running){
-                String outputFilename = "C:\\Users\\marcu\\OneDrive - University of New Mexico\\CS423 Complex adaptive systems\\Project3\\outputRandomGraph.txt";
+                String outputFilename = "C:\\Users\\marcu\\OneDrive - University of New Mexico\\CS423 Complex adaptive systems\\Project3\\output.txt";
                 try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename), true))) {
                     String totalInfected = "Total Infected: " + population.getTotalInfected();
                     System.out.println(totalInfected);
@@ -55,26 +55,29 @@ public class Controller extends TimerTask {
                     System.out.println(perceivedHosp);
                     String perceivedMortality = "Perceived Mortality Rate: " + ((double) population.getTotalDeaths()) / ((double) population.getTotalInfected());
                     System.out.println(perceivedMortality);
+                    String populationSize = Integer.toString(population.getTotalAgents());
+                    System.out.println("PopulationSize: " + populationSize);
 
-                    writer.write(totalInfected);
-                    writer.write(totalHospitalized);
-                    writer.write(totalDeaths);
-                    writer.write(percentInfected);
-                    writer.write(percentHospitalized);
-                    writer.write(percentDeaths);
-                    writer.write(perceivedHosp);
-                    writer.write(perceivedMortality);
-                    
+
+
+                    String ls = System.lineSeparator();
+                    writer.write("population size " + populationSize + ls);
+                    writer.write(totalInfected + ls);
+                    writer.write(totalHospitalized + ls);
+                    writer.write(totalDeaths + ls);
+                    writer.write(percentInfected + ls);
+                    writer.write(percentHospitalized + ls);
+                    writer.write(percentDeaths + ls);
+                    writer.write(perceivedHosp + ls);
+                    writer.write(perceivedMortality + ls);
+                    writer.write(ls + ls);
+
                 }catch(IOException ex){
                     ex.printStackTrace();
                 }
             }
             time++;
         }
-    }
-
-    public void step(){
-
     }
 
 }

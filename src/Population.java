@@ -9,13 +9,15 @@ import java.util.Map;
  *
  */
 public abstract class Population {
-    private int height, width;
+    private int height, width, edges = 0;
     public ArrayList<Agent> population = new ArrayList<>();
     public Map<Coordinate, Agent> coordinateAgentMap = new HashMap<>();
 
 
-    private double percentElderly = 0.147; //percent of the population aged 62 and over in the US in the 2010 US Cencus
-    private double percentAdult = 0.742; //percent of the population aged 18 and over in the US in the 2010 US Cencus
+
+
+    private double percentElderly = 0.147; //percent of the population aged 62 and over in the US in the 2010 US Census
+    private double percentAdult = 0.742; //percent of the population aged 18 and over in the US in the 2010 US Census
     public Population(){}//I moved this to the factory
 
     public Population(int height, int width){
@@ -158,6 +160,7 @@ public abstract class Population {
         Agent node2 = coordinateAgentMap.get(node2Coordinate);
         node1.addNeighbor(node2);
         node2.addNeighbor(node1);
+        edges++;
     }
 
 }

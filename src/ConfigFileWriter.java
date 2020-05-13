@@ -17,7 +17,7 @@ public class ConfigFileWriter {
     ArrayList<Coordinate> coordinates = new ArrayList<>();
     //these are so we know there's already a connection there
     ArrayList<Edge> edges = new ArrayList<>(); //was going to use set but I'm checking for contains before adding every time anyway...
-    String mode = "random"; // "tree" "clustered"
+    String mode = "small world"; // "tree" "clustered" "random"
     private int bound = 100;
 
     class Edge{
@@ -36,7 +36,6 @@ public class ConfigFileWriter {
         }
         Coordinate getStartCoordinate(){return startCoordinate;}
         Coordinate getEndCoordinate(){return endCoordinate; }
-
     }
 
     private void writeCoordinates(){
@@ -47,7 +46,7 @@ public class ConfigFileWriter {
         } else if (mode.equals("tree")){
 
         } else if (mode.equals("small world")){
-
+            writeSmallWorld();
         }
 
     }
@@ -58,7 +57,7 @@ public class ConfigFileWriter {
     private void writeClustered(){
         //fuck this just write some clusters then connect em
         Coordinate coordinate1 = new Coordinate( 2,2);
-        writeACluster2(coordinate1, 10);
+        writeMooreCluster(coordinate1, 10);
     }
 
     /**
@@ -151,8 +150,8 @@ public class ConfigFileWriter {
      * @param coord
      * @param size
      */
-    private void writeACluster2(Coordinate coord, int size){ //fudge it, I'm not protecting this with logic.
-        size = size*2; //scale by two
+    private void writeMooreCluster(Coordinate coord, int size){ //fudge it, I'm not protecting this with logic.
+        size = size*2; //scale by two - ok I'll be the first to say I wrote this in a confusing ass way
         int x = coord.getX(); int y = coord.getY();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename), true))){
             for(int i = 0; i < size; i+=2 ){
@@ -196,6 +195,51 @@ public class ConfigFileWriter {
         }
     }
 
+    private void writeSmallWorld(){
+        //just make something that's kinda well distributed
+        ArrayList<Coordinate> centers = new ArrayList<>();
+        Random random = new Random();
+        for(int x = 0; x < 3; x++ ){ //write the clusters
+            for(int y =0 ; y <3; y++){
+                Coordinate here = new Coordinate(x*40,y*40); ////scale em a little so they're far enough apart
+                centers.add(here);
+                writeMooreCluster(here, (random.nextInt(12) + 4) ); //have a bit of randomness for size of cluster
+            }
+        }
+        int i=0;
+        for(Coordinate here : centers){ //connect to all predecessors
+            Coordinate next = null;
+            if(i<centers.size()-1)  next = centers.get(i+1);
+            if( !here.equals(next) && (next != null)) writeEdge( new Edge(here, next) ); //idk how they would have been the same...
+            i++;
+        }
+        //eh needs a little more connection
+        writeEdge( new Edge (centers.get(0), centers.get(3)));
+        writeEdge( new Edge (centers.get(4), centers.get(7)));
+        writeEdge( new Edge (centers.get(5), centers.get(8)));
+        writeEdge( new Edge (centers.get(1), centers.get(4)));
+        for(int r=0;r<100;r++){//let's increase connectivity so let's make some random edges
+            int nextIndex1 = random.nextInt( coordinates.size() -1 );
+            int nextIndex2 = random.nextInt( coordinates.size() -1 );
+            writeEdge( new Edge( coordinates.get(nextIndex1), coordinates.get(nextIndex2) ));
+        }
+    }
+
+    private void writeEdge(Edge edge){
+        if( !edges.contains(edge) ) {
+            edges.add(edge);
+            int startx = edge.startCoordinate.getX();
+            int starty = edge.startCoordinate.getY();
+            int endx = edge.endCoordinate.getX();
+            int endy = edge.endCoordinate.getY();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename), true))) {
+                writer.write("edge " + startx + " " + starty + " " + endx + " " + endy + "\n");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     private void writeRandomDisconnect(){
         Random random = new Random();
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename), false))){
@@ -228,6 +272,8 @@ public class ConfigFileWriter {
             System.out.println("couldn't write results");
         }
     }
+
+
 
     public String getFilename(){ return outputFilename; }
 

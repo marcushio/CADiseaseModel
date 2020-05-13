@@ -1,0 +1,110 @@
+population size 993
+Total Infected: 323
+Total Hospitalized: 65
+Total Deaths: 3
+Percent Infected: 0.3252769385699899
+Percent Hospitalized: 0.06545820745216516
+Percent Deaths: 0.0030211480362537764
+Perceived Hospitalization Rate: 0.20123839009287925
+Perceived Mortality Rate: 0.009287925696594427
+
+
+population size 993
+Total Infected: 362
+Total Hospitalized: 66
+Total Deaths: 1
+Percent Infected: 0.364551863041289
+Percent Hospitalized: 0.06646525679758308
+Percent Deaths: 0.0010070493454179255
+Perceived Hospitalization Rate: 0.18232044198895028
+Perceived Mortality Rate: 0.0027624309392265192
+
+
+population size 993
+Total Infected: 363
+Total Hospitalized: 62
+Total Deaths: 0
+Percent Infected: 0.36555891238670696
+Percent Hospitalized: 0.06243705941591138
+Percent Deaths: 0.0
+Perceived Hospitalization Rate: 0.17079889807162535
+Perceived Mortality Rate: 0.0
+
+
+population size 993
+Total Infected: 346
+Total Hospitalized: 73
+Total Deaths: 2
+Percent Infected: 0.34843907351460224
+Percent Hospitalized: 0.07351460221550855
+Percent Deaths: 0.002014098690835851
+Perceived Hospitalization Rate: 0.21098265895953758
+Perceived Mortality Rate: 0.005780346820809248
+
+
+population size 993
+Total Infected: 370
+Total Hospitalized: 61
+Total Deaths: 1
+Percent Infected: 0.3726082578046324
+Percent Hospitalized: 0.06143001007049345
+Percent Deaths: 0.0010070493454179255
+Perceived Hospitalization Rate: 0.16486486486486487
+Perceived Mortality Rate: 0.002702702702702703
+
+
+population size 993
+Total Infected: 373
+Total Hospitalized: 57
+Total Deaths: 3
+Percent Infected: 0.3756294058408862
+Percent Hospitalized: 0.05740181268882175
+Percent Deaths: 0.0030211480362537764
+Perceived Hospitalization Rate: 0.15281501340482573
+Perceived Mortality Rate: 0.00804289544235925
+
+
+population size 993
+Total Infected: 373
+Total Hospitalized: 70
+Total Deaths: 3
+Percent Infected: 0.3756294058408862
+Percent Hospitalized: 0.07049345417925479
+Percent Deaths: 0.0030211480362537764
+Perceived Hospitalization Rate: 0.1876675603217158
+Perceived Mortality Rate: 0.00804289544235925
+
+
+population size 993
+Total Infected: 326
+Total Hospitalized: 52
+Total Deaths: 1
+Percent Infected: 0.3282980866062437
+Percent Hospitalized: 0.05236656596173213
+Percent Deaths: 0.0010070493454179255
+Perceived Hospitalization Rate: 0.15950920245398773
+Perceived Mortality Rate: 0.003067484662576687
+
+
+population size 993
+Total Infected: 376
+Total Hospitalized: 67
+Total Deaths: 1
+Percent Infected: 0.37865055387714
+Percent Hospitalized: 0.06747230614300101
+Percent Deaths: 0.0010070493454179255
+Perceived Hospitalization Rate: 0.17819148936170212
+Perceived Mortality Rate: 0.0026595744680851063
+
+
+population size 993
+Total Infected: 329
+Total Hospitalized: 51
+Total Deaths: 1
+Percent Infected: 0.33131923464249746
+Percent Hospitalized: 0.0513595166163142
+Percent Deaths: 0.0010070493454179255
+Perceived Hospitalization Rate: 0.15501519756838905
+Perceived Mortality Rate: 0.00303951367781155
+
+
