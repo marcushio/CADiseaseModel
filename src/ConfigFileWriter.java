@@ -2,10 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Marcus Trujillo
@@ -17,7 +14,7 @@ public class ConfigFileWriter {
     ArrayList<Coordinate> coordinates = new ArrayList<>();
     //these are so we know there's already a connection there
     ArrayList<Edge> edges = new ArrayList<>(); //was going to use set but I'm checking for contains before adding every time anyway...
-    String mode = "small world"; // "tree" "clustered" "random"
+    String mode = "tree"; // "tree" "clustered" "random" "small world"
     private int bound = 100;
 
     class Edge{
@@ -44,7 +41,7 @@ public class ConfigFileWriter {
         } else if (mode.equals("clustered")){
             writeClustered();
         } else if (mode.equals("tree")){
-
+            writeTree();
         } else if (mode.equals("small world")){
             writeSmallWorld();
         }
@@ -58,6 +55,36 @@ public class ConfigFileWriter {
         //fuck this just write some clusters then connect em
         Coordinate coordinate1 = new Coordinate( 2,2);
         writeMooreCluster(coordinate1, 10);
+    }
+
+    private void writeTree(){ //locations don't really matter here since we don't have a weighted graph just as long as we're acyclic
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename), false))) {
+            ArrayList<Coordinate> treeCoords = new ArrayList<>();
+            //write all our coords before hand
+            for (int i = 0; i < 35; i++) {
+                for (int j = 0; j < 35; j++) {
+                    treeCoords.add(new Coordinate(i, j));
+                }
+            }
+
+            for(int i=0;i<300;i++){
+                Coordinate parent = treeCoords.get(i);
+                writer.write("agent " + parent.getX() + " " + parent.getY() + "\n");
+                //get 4 kids write 'em and write edges
+                for(int n=0;n<4;n++){
+                    Coordinate child = treeCoords.get( (i*4)+n );
+                    coordinates.add(child);
+                    writer.write("agent " + child.getX() + " " + child.getY() + "\n");
+                    edges.add(new Edge(parent , child));
+                    writer.write("edge " + parent.getX() + " " + parent.getY() + " " + child.getX() + " " + child.getY() + "\n");
+                }
+
+            }
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+
     }
 
     /**
