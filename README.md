@@ -1,2 +1,2 @@
 # CADiseaseModel
-Disease modelling sing a cellular automaton
+Disease modelling using a cellular automaton
